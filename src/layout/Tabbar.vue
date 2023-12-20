@@ -2,7 +2,7 @@
   <van-tabbar :border="false" fixed safe-area-inset-bottom placeholder route>
     <van-tabbar-item to="/conversation" :badge="conversationStore.storeUnReadCount"
       :badge-props="{ max: 99, showZero: false }">
-      <span>OpenIM</span>
+      <span>miti</span>
       <template #icon="props">
         <img :src="props.active ? conversation_active : conversation" />
       </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="page_container !bg-white px-10 relative">
     <img class="w-16 h-16 mx-auto mt-[88px]" src="@assets/images/logo.png" alt="" @click="show = true">
-    <div class=" text-lg font-semibold mx-auto text-primary">{{ $t('welcome') }}</div>
+    <!-- <div class=" text-lg font-semibold mx-auto text-primary">{{ $t('welcome') }}</div> -->
 
     <van-form @submit="onSubmit" class="mt-[76px]">
       <div v-if="!isByEmail">
