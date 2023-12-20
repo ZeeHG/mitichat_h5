@@ -13,7 +13,7 @@
 
     <div class="mt-2 mx-3 rounded-md overflow-hidden">
       <DetailInfoItem :lable="$t('cellphone')" :content="userStore.storeSelfInfo.phoneNumber" />
-      <DetailInfoItem arrow :lable="$t('email')" :content="userStore.storeSelfInfo.email" />
+      <DetailInfoItem :lable="$t('email')" :content="userStore.storeSelfInfo.email" />
     </div>
 
     <van-uploader v-show="false" ref="uploaderRef" accept="image/*" capture="camcorder" :preview-image="false"

@@ -19,7 +19,7 @@
         <div class="text-sm mb-1 text-sub-text">{{ $t('confirmPassword') }}</div>
         <div class="border border-gap-text rounded-lg">
           <van-field class="!py-1" clearable v-model="confirmPassword" name="confirmPassword" type="password"
-            :placeholder="$t('placeholder.reConfirmPassword')">
+            :placeholder="$t('reConfirmPassword')">
           </van-field>
         </div>
       </div>
@@ -45,6 +45,7 @@ const { t } = useI18n()
 const router = useRouter();
 const props = defineProps<{
   baseData: BaseData & { verificationCode: string }
+  isByEmail: boolean
 }>()
 
 const passwordRegExp = /^(?=.*[0-9])(?=.*[a-zA-Z]).{6,20}$/
@@ -70,7 +71,8 @@ const onSubmit = () => {
     password: md5(password.value),
     VerifyCode: props.baseData.verificationCode,
     areaCode: props.baseData.areaCode,
-    phoneNumber: props.baseData.phoneNumber
+    phoneNumber: props.baseData.phoneNumber,
+    email: props.baseData.email,
   })
     .then(() => feedbackToast({ message: t('messageTip.changePasswordSuccess'), onClose: () => router.push('login') }))
     .catch(error => feedbackToast({ error }))

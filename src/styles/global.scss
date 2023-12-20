@@ -103,6 +103,10 @@ body {
   display: block !important;
 }
 
+.van-image-preview__index {
+  display: none !important;
+}
+
 @font-face {
   font-family: "MozillaTwemojiColr";
   src: url("/font/twemoji.woff2") format("woff2");

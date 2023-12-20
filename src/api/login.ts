@@ -52,7 +52,6 @@ export const login = (params: DemoLoginParams) => {
     "/account/login",
     JSON.stringify({
       ...params,
-      verifyCode: "666666",
       deviceID: "",
       platform: 5,
       account: "",

@@ -4,8 +4,11 @@
 
     <div class="text-2xl text-primary font-semibold mt-12">{{ $t('placeholder.inputVerificationCode') }}</div>
     <div class="text-sub-text text-xs mt-2">
-      <span class="mr-1">{{ baseData.areaCode }}</span>
-      <span>{{ baseData.phoneNumber }}</span>
+      <template v-if="!baseData.isByEmail">
+        <span class="mr-1">{{ baseData.areaCode }}</span>
+        <span>{{ baseData.phoneNumber }}</span>
+      </template>
+      <template v-else>{{ baseData.email }}</template>
     </div>
 
     <div class="mt-10">
@@ -33,6 +36,8 @@ export interface BaseData {
   phoneNumber: string
   invitationCode: string
   isRegiste: boolean
+  isByEmail: boolean
+  email: string
 }
 
 const props = defineProps<{
@@ -46,10 +51,11 @@ const count = ref(60)
 let timer: NodeJS.Timer
 
 const onSubmit = () => {
-  const { phoneNumber, areaCode, isRegiste } = props.baseData
+  const { phoneNumber, areaCode, email, isRegiste } = props.baseData
   verifyCode({
     phoneNumber,
     areaCode,
+    email,
     verifyCode: verificationCode.value,
     usedFor: isRegiste ? UsedFor.Register : UsedFor.Modify
   })
@@ -84,6 +90,7 @@ const reSend = () => {
   sendSms({
     phoneNumber: props.baseData.phoneNumber,
     areaCode: props.baseData.areaCode,
+    email: props.baseData.email,
     usedFor: props.baseData.isRegiste ? UsedFor.Register : UsedFor.Modify
   })
     .then(startTimer)

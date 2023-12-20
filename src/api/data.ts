@@ -7,7 +7,8 @@ export enum UsedFor {
 }
 
 export type SendSmsParams = {
-  phoneNumber: string;
+  phoneNumber?: string;
+  email?: string;
   areaCode: string;
   usedFor: UsedFor;
   invitationCode?: string;
@@ -32,7 +33,8 @@ export type DemoRegisterParams = {
 };
 
 export type VerifyCodeParams = {
-  phoneNumber: string;
+  phoneNumber?: string;
+  email?: string;
   areaCode: string;
   verifyCode: string;
   usedFor: UsedFor;
@@ -43,6 +45,7 @@ export type ModifyPasswordParams = {
   areaCode: string;
   VerifyCode: string;
   password: string;
+  email?: string;
 };
 
 export type ChangPasswordParams = {
@@ -52,9 +55,11 @@ export type ChangPasswordParams = {
 };
 
 export type DemoLoginParams = {
-  phoneNumber: string;
+  phoneNumber?: string;
   areaCode: string;
   password: string;
+  email?: string;
+  verifyCode?: string;
 };
 
 export interface BusinessUserInfo {

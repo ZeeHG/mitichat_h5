@@ -4,7 +4,7 @@
     <div class=" text-lg font-semibold mx-auto text-primary">{{ $t('welcome') }}</div>
 
     <van-form @submit="onSubmit" class="mt-[76px]">
-      <div>
+      <div v-if="!isByEmail">
         <div class="text-sm mb-1 text-sub-text">{{ $t('cellphone') }}</div>
         <div class="border border-gap-text rounded-lg flex items-center">
           <div class="flex items-center border-r border-gap-text px-3" @click="showAreaCode = true">
@@ -13,6 +13,14 @@
           </div>
           <van-field class="!py-1 !text-base" clearable v-model="formData.phoneNumber" name="phoneNumber" type="number"
             :placeholder="$t('placeholder.inputPhoneNumber')" />
+        </div>
+      </div>
+
+      <div v-else>
+        <div class="text-sm mb-1 text-sub-text">{{ $t('email') }}</div>
+        <div class="border border-gap-text rounded-lg">
+          <van-field class="!py-1" clearable v-model="formData.email" name="email"
+            :placeholder="$t('placeholder.inputEmail')" />
         </div>
       </div>
 
@@ -47,9 +55,16 @@
       </div>
 
       <div class="mt-16">
-        <van-button :loading="loading" :disabled="!(formData.phoneNumber && formData.password)" block type="primary"
-          native-type="submit">
+        <van-button :loading="loading"
+          :disabled="!((formData.phoneNumber || formData.email) && (formData.password || formData.verificationCode))"
+          block type="primary" native-type="submit">
           {{ $t('buttons.login') }}
+        </van-button>
+
+        <div class="w-full h-[1px] bg-[#707070] opacity-10 my-4"></div>
+
+        <van-button @click="isByEmail = !isByEmail" block>
+          {{ isByEmail ? $t('buttons.phoneNumberLogin') : $t('buttons.emailLogin') }}
         </van-button>
       </div>
     </van-form>
@@ -66,6 +81,8 @@
       <van-picker :columns="countryCode" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"
         :columns-field-names="{ text: 'phone_code', value: 'phone_code', children: 'children' }" />
     </van-popup>
+
+    <van-action-sheet v-model:show="showActions" :actions="actions" @select="onSelect" />
 
 
     <Config :show="show" @close="show = false" />
@@ -87,9 +104,13 @@ const version = process.env.VERSION
 const { t } = useI18n()
 const router = useRouter();
 const show = ref(false)
+const showActions = ref(false)
+const isRegiste = ref(false)
+const actions = ref<{ idx: number, name: string }[]>([]);
 
 const formData = reactive({
   phoneNumber: localStorage.getItem("IMAccount") ?? '',
+  email: "",
   areaCode: '+86',
   password: '',
   verificationCode: '',
@@ -97,6 +118,7 @@ const formData = reactive({
 })
 const loading = ref(false)
 const isByPassword = ref(true)
+const isByEmail = ref(false)
 const showAreaCode = ref(false)
 const count = ref(0)
 let timer: NodeJS.Timer
@@ -106,9 +128,11 @@ const onSubmit = async () => {
   localStorage.setItem("IMAccount", formData.phoneNumber)
   try {
     const { data: { chatToken, imToken, userID } } = await login({
-      phoneNumber: formData.phoneNumber,
-      password: md5(formData.password),
-      areaCode: formData.areaCode
+      phoneNumber: isByEmail.value ? '' : formData.phoneNumber,
+      password: isByPassword.value ? md5(formData.password) : '',
+      areaCode: formData.areaCode,
+      verifyCode: formData.verificationCode,
+      email: formData.email,
     })
 
     setIMProfile({ chatToken, imToken, userID })
@@ -129,6 +153,7 @@ const reSend = () => {
   sendSms({
     phoneNumber: formData.phoneNumber,
     areaCode: formData.areaCode,
+    email: formData.email,
     usedFor: UsedFor.Login
   })
     .then(startTimer)
@@ -150,13 +175,28 @@ const startTimer = () => {
 }
 
 const getCode = (flag: boolean) => {
+  isRegiste.value = flag
+  if (flag) {
+    actions.value = [
+      { idx: 0, name: t('buttons.emailRegiste') }, { idx: 1, name: t('buttons.phoneNumberRegiste') }
+    ];
+  } else {
+    actions.value = [
+      { idx: 0, name: t('buttons.emailRetrieve') }, { idx: 1, name: t('buttons.phoneNumberRetrieve') }
+    ];
+  }
+  showActions.value = true
+}
+
+const onSelect = (item: { idx: number, name: string }) => {
   router.push({
     path: 'getCode',
     query: {
-      isRegiste: flag + ''
+      isRegiste: isRegiste.value + '',
+      isByEmail: item.idx === 0 ? true + '' : false + '',
     }
   })
-}
+};
 </script>
 
 <style lang='scss' scoped>

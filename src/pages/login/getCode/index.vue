@@ -6,7 +6,7 @@
     </div>
 
     <van-form @submit="onSubmit">
-      <div>
+      <div v-if="!isByEmail">
         <div class="text-sm mb-1 text-sub-text">{{ $t('cellphone') }}</div>
         <div class="border border-gap-text rounded-lg flex items-center">
           <div class="flex items-center border-r border-gap-text px-3" @click="showAreaCode = true">
@@ -15,6 +15,14 @@
           </div>
           <van-field class="!py-1 !text-base" clearable v-model="formData.phoneNumber" name="phoneNumber" type="number"
             :placeholder="$t('placeholder.inputPhoneNumber')" />
+        </div>
+      </div>
+
+      <div v-else>
+        <div class="text-sm mb-1 text-sub-text">{{ $t('email') }}</div>
+        <div class="border border-gap-text rounded-lg">
+          <van-field class="!py-1" clearable v-model="formData.email" name="email"
+            :placeholder="$t('placeholder.inputEmail')" />
         </div>
       </div>
 
@@ -65,13 +73,15 @@ import { feedbackToast } from '@/utils/common';
 import login_back from '@assets/images/login_back.png'
 
 const phoneRegExp = /^1[3-9]\d{9}$/
+const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 const { t } = useI18n()
 const userStore = useUserStore();
 const router = useRouter();
 
-const props = defineProps<{ isRegiste: boolean }>()
+const props = defineProps<{ isRegiste: boolean, isByEmail: boolean }>()
 const formData = reactive({
+  email: '',
   phoneNumber: '',
   areaCode: '+86',
   invitationCode: '',
@@ -85,10 +95,17 @@ let timer: NodeJS.Timer
 const needInvitationCode = computed(() => !!userStore.storeAppConfig.needInvitationCodeRegister)
 
 const onSubmit = () => {
-  if (!phoneRegExp.test(formData.phoneNumber)) {
+  if (!props.isByEmail && !phoneRegExp.test(formData.phoneNumber)) {
     feedbackToast({
       message: t('messageTip.correctPhoneNumber'),
       error: t('messageTip.correctPhoneNumber')
+    })
+    return
+  }
+  if (props.isByEmail && !emailRegExp.test(formData.email)) {
+    feedbackToast({
+      message: t('messageTip.correctEmail'),
+      error: t('messageTip.correctEmail'),
     })
     return
   }
@@ -102,16 +119,19 @@ const onSubmit = () => {
   sendSms({
     phoneNumber: formData.phoneNumber,
     areaCode: formData.areaCode,
+    email: formData.email,
     usedFor: props.isRegiste ? UsedFor.Register : UsedFor.Modify
   })
     .then(() => {
+      console.log(props.isByEmail)
       if (props.isRegiste) {
         router.push({
           path: 'verifyCode',
           query: {
             baseData: JSON.stringify({
               ...formData,
-              isRegiste: props.isRegiste
+              isRegiste: props.isRegiste,
+              isByEmail: props.isByEmail
             })
           }
         })
@@ -121,7 +141,8 @@ const onSubmit = () => {
           query: {
             baseData: JSON.stringify({
               ...formData,
-              isRegiste: props.isRegiste
+              isRegiste: props.isRegiste,
+              isByEmail: props.isByEmail
             })
           }
         })
@@ -139,6 +160,7 @@ const reSend = () => {
   if (count.value > 0) return
   sendSms({
     phoneNumber: formData.phoneNumber,
+    email: formData.email,
     areaCode: formData.areaCode,
     usedFor: UsedFor.Login
   })

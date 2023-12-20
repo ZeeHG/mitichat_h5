@@ -29,11 +29,14 @@ const loginRouters: Array<RouteRecordRaw> = [
     name: "GetCode",
     props: ({ query }) => {
       let isRegiste;
+      let isByEmail;
       try {
         isRegiste = JSON.parse(query.isRegiste as string);
+        isByEmail = JSON.parse(query.isByEmail as string);
       } catch (error) {}
       return {
         isRegiste,
+        isByEmail,
       };
     },
     component: () => import("@pages/login/getCode/index.vue"),

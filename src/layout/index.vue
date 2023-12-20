@@ -30,6 +30,10 @@ onMounted(() => {
 })
 
 router.beforeEach(async (to, from, next) => {
+  if (to.path === '/getCode') {
+    next()
+    return
+  }
   if (from.path === '/login') {
     const { data } = await IMSDK.getLoginStatus<LoginStatus>()
     if (data === LoginStatus.Logout) {
