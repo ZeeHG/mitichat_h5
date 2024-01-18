@@ -1,0 +1,7 @@
+{
+/**  
+zh-CN: 基础变量只能通过 root 选择器修改，不能通过 ConfigProvider 组件修改。https://youzan.github.io/vant/v4/#/zh-CN/config-provider#zhu-ti-bian-liang
+en-US: The basic variables can only be modified through the root selector. https://youzan.github.io/vant/v4/#/zh-CN/config-provider#variables
+*/
+"--van-primary-color": "#8443F8FF",
+}

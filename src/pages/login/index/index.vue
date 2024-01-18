@@ -1,13 +1,13 @@
 <template>
-  <div class="page_container !bg-white px-10 relative">
-    <img class="w-16 h-16 mx-auto mt-[88px]" src="@assets/images/logo.png" alt="" @click="show = true">
+  <div class=" !bg-white px-10 relative">
+    <img class="w-[90px] mx-auto mt-[99px]" src="@assets/images/logo.png" alt="">
     <!-- <div class=" text-lg font-semibold mx-auto text-primary">{{ $t('welcome') }}</div> -->
 
-    <van-form @submit="onSubmit" class="mt-[76px]">
+    <van-form @submit="onSubmit" class="mt-[61px]">
       <div v-if="!isByEmail">
-        <div class="text-sm mb-1 text-sub-text">{{ $t('cellphone') }}</div>
-        <div class="border border-gap-text rounded-lg flex items-center">
-          <div class="flex items-center border-r border-gap-text px-3" @click="showAreaCode = true">
+        <!-- <div class="text-sm mb-1 text-sub-text">{{ $t('cellphone') }}</div> -->
+        <div class="border-b border-gap-text rounded-lg flex items-center">
+          <div class="flex items-center border-gap-text px-3" @click="showAreaCode = true">
             <span class="mr-1">{{ formData.areaCode }}</span>
             <van-icon name="arrow-down" />
           </div>
@@ -17,24 +17,24 @@
       </div>
 
       <div v-else>
-        <div class="text-sm mb-1 text-sub-text">{{ $t('email') }}</div>
-        <div class="border border-gap-text rounded-lg">
+        <!-- <div class="text-sm mb-1 text-sub-text">{{ $t('email') }}</div> -->
+        <div class="border-b border-gap-text rounded-lg">
           <van-field class="!py-1" clearable v-model="formData.email" name="email"
             :placeholder="$t('placeholder.inputEmail')" />
         </div>
       </div>
 
       <div class="mt-5" v-if="isByPassword">
-        <div class="text-sm mb-1 text-sub-text">{{ $t('password') }}</div>
-        <div class="border border-gap-text rounded-lg">
+        <!-- <div class="text-sm mb-1 text-sub-text">{{ $t('password') }}</div> -->
+        <div class="border-b border-gap-text rounded-lg">
           <van-field class="!py-1" clearable v-model="formData.password" name="password" type="password"
             :placeholder="$t('placeholder.inputPassword')" />
         </div>
       </div>
 
       <div class="mt-5" v-else>
-        <div class="text-sm mb-1 text-sub-text">{{ $t('reAcquireDesc') }}</div>
-        <div class="border border-gap-text rounded-lg">
+        <!-- <div class="text-sm mb-1 text-sub-text">{{ $t('reAcquireDesc') }}</div> -->
+        <div class="border-m border-gap-text rounded-lg">
           <van-field class="!py-1" clearable v-model="formData.verificationCode" name="verificationCode" type="text"
             :placeholder="$t('placeholder.inputVerificationCode')">
             <template #button>
@@ -45,14 +45,14 @@
         </div>
       </div>
 
-      <div class="mt-3 flex justify-between">
+      <!-- <div class="mt-3 flex justify-between">
         <div class="text-xs text-sub-text" @click="getCode(false)">
           {{ $t('forgetPasswordTitle') }}
         </div>
         <div class="text-xs text-primary" @click="isByPassword = !isByPassword">
           {{ `${isByPassword ? $t('buttons.verificationCodeLogin') : $t('buttons.passwordLogin')}` }}
         </div>
-      </div>
+      </div> -->
 
       <div class="mt-16">
         <van-button :loading="loading"
@@ -61,21 +61,20 @@
           {{ $t('buttons.login') }}
         </van-button>
 
-        <div class="w-full h-[1px] bg-[#707070] opacity-10 my-4"></div>
+        <div class="w-full bg-[#707070] opacity-10 my-5"></div>
 
         <van-button @click="isByEmail = !isByEmail" block>
           {{ isByEmail ? $t('buttons.phoneNumberLogin') : $t('buttons.emailLogin') }}
         </van-button>
+
+        <div class="mt-3 flex justify-between">
+          <div class="text-xs text-primary" @click="getCode(false)">
+            {{ $t('forgetPasswordTitle') }}
+          </div>
+          <div class="text-xs text-primary" @click="getCode(true)">{{ $t('nowRegister') }}</div>
+        </div>
       </div>
     </van-form>
-
-    <div class="text-xs absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col w-[300px] items-center">
-      <div class="flex flex-row text-primary">
-        <div class="text-sub-text">{{ $t('notHaveAccount') }}</div>
-        <div @click="getCode(true)">{{ $t('nowRegister') }}</div>
-      </div>
-      <div class="text-sub-text">{{ version }}</div>
-    </div>
 
     <van-popup v-model:show="showAreaCode" round position="bottom">
       <van-picker :columns="countryCode" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"

@@ -1,0 +1,8 @@
+html {
+  color: #333333;
+}
+
+:root {
+  --van-primary-color: #8443f8ff;
+  --van-gray-8: #333333;
+}

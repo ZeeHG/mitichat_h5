@@ -8,11 +8,13 @@ import { i18n } from "./i18n";
 import { errorHandler } from "./error";
 
 import "vant/es/toast/style";
+import "vant/es/toast/style";
 import "vant/es/dialog/style";
 import "vant/es/image-preview/style";
 
 import { initAMapApiLoader } from "@vuemap/vue-amap";
 import "@vuemap/vue-amap/dist/style.css";
+import "@/theme/variables.css"
 initAMapApiLoader({
   key: process.env.AMAP_KEY!,
   //Loca:{

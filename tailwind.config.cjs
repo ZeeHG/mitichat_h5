@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#0089FF",
+        primary: "#8443F8",
         "balck-text": "#0C1C33",
         "sub-text": "#8E9AB0",
         "gap-text": "#E8EAEF",

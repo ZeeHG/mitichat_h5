@@ -1,6 +1,6 @@
 <template>
   <van-image class="my_avator" :style="{ 'min-width': `${size}px` }" :width="size" fit="cover" :height="size"
-    :radius="radius" :src="getAvatorUrl" @error="errorState = true" />
+    :radius="size/2" :src="getAvatorUrl" @error="errorState = true" />
 </template>
 
 <script setup lang='ts'>
