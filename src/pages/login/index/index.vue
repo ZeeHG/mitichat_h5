@@ -77,8 +77,14 @@
     </van-form>
 
     <van-popup v-model:show="showAreaCode" round position="bottom">
-      <van-picker :columns="countryCode" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"
-        :columns-field-names="{ text: 'phone_code', value: 'phone_code', children: 'children' }" />
+      <van-picker :columns="countryCodeList" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"
+        :columns-field-names="{ text: 'phone_code', value: 'phone_code', children: 'children' }">
+        <template v-slot:columns-top>
+          <div class="border border-gap-text rounded-lg mx-4">
+            <van-field v-model="countryCodeInput" />
+          </div>
+        </template>
+      </van-picker>
     </van-popup>
 
     <van-action-sheet v-model:show="showActions" :actions="actions" @select="onSelect" />
@@ -106,11 +112,14 @@ const show = ref(false)
 const showActions = ref(false)
 const isRegiste = ref(false)
 const actions = ref<{ idx: number, name: string }[]>([]);
+const countryCodeInput = ref('');
+
+const countryCodeList: any = computed(() => countryCode.filter((item: any) => item.phone_code.includes(countryCodeInput.value)));
 
 const formData = reactive({
   phoneNumber: localStorage.getItem("IMAccount") ?? '',
   email: "",
-  areaCode: '+86',
+  areaCode: '+1',
   password: '',
   verificationCode: '',
   accept: true
@@ -143,7 +152,7 @@ const onSubmit = async () => {
 }
 
 const onConfirmAreaCode = ({ selectedValues }: PickerConfirmEventParams) => {
-  formData.areaCode = String(selectedValues[0])
+  formData.areaCode = countryCodeList.value.length? String(selectedValues[0]) : formData.areaCode;
   showAreaCode.value = false
 }
 

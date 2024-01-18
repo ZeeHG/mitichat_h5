@@ -1,12 +1,12 @@
 <template>
   <van-swipe-cell>
-    <div @click="clickConversation" class="flex items-center py-[10px] px-[22px] active:bg-[#F3F3F3]">
+    <div @click="clickConversation" class="flex items-center py-[10px] mb-2 ml-[12px] px-[10px] rounded-l-[34px] bg-white active:bg-[#F3F3F3]">
       <div class="pinned" v-if="source.isPinned"></div>
       <Avatar :size="48" :src="source.faceURL" :desc="source.showName" :is-group="isGroup"
         :is-notification="isNotification" />
       <div class="flex-1 mx-3 flex justify-evenly flex-col h-12">
         <div class="text-[15px] truncate max-w-[40vw]">{{ source.showName }}</div>
-        <div class="text-[#666] text-[13px] truncate max-w-[50vw]">
+        <div class="text-[#666] text-[13px] truncate max-w-[38vw]">
           <span v-show="messagePrefix" class="mr-1" :class="{ 'text-[#1B72EC]': activePrefix }">{{ messagePrefix
           }}</span>
           <span v-html="parseEmoji(formattedMessage)"></span>
