@@ -5,7 +5,7 @@
       <div class="flex-grow">
         <div v-show="recording" ref="recordingBtnRef" @touchmove="touchMoveSpeech" @touchend="endRecord"
           class="bg-[#8E9AB0] bg-opacity-30 text-[#fff] flex justify-center items-center h-8 rounded">
-          <span>{{ $t('buttons.holdSpeak') }}</span>
+          <span class="select-none">{{ $t('buttons.holdSpeak') }}</span>
         </div>
         <CustomEdit v-show="!recording" class="bg-[#fff]" ref="inputRef" @change="inputChange"
           @focus="onFocusUpdate(true)" @blur="onFocusUpdate(false)" v-model:input="messageContent"
