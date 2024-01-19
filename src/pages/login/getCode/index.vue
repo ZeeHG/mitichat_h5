@@ -117,7 +117,7 @@ const onSubmit = () => {
     })
     return
   }
-  if (needInvitationCode && formData.invitationCode) {
+  if (needInvitationCode.value && (!formData.invitationCode || formData.invitationCode.trim() == '')) {
     feedbackToast({
       message: t('messageTip.invitationCode'),
       error: t('messageTip.invitationCode')
@@ -128,7 +128,8 @@ const onSubmit = () => {
     phoneNumber: formData.phoneNumber,
     areaCode: formData.areaCode,
     email: formData.email,
-    usedFor: props.isRegiste ? UsedFor.Register : UsedFor.Modify
+    usedFor: props.isRegiste ? UsedFor.Register : UsedFor.Modify,
+    invitationCode: needInvitationCode.value? formData.invitationCode : undefined,
   })
     .then(() => {
       console.log(props.isByEmail)
@@ -171,7 +172,8 @@ const reSend = () => {
     phoneNumber: formData.phoneNumber,
     email: formData.email,
     areaCode: formData.areaCode,
-    usedFor: UsedFor.Login
+    usedFor: UsedFor.Login,
+    invitationCode: needInvitationCode.value? formData.invitationCode : undefined,
   })
     .then(startTimer)
     .catch(error => feedbackToast({ message: t('messageTip.sendCodeFailed'), error }))

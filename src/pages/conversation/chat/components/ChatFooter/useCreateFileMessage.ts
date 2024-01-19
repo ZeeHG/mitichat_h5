@@ -49,15 +49,16 @@ export default function useCreateFileMessage() {
     duration: number
   ): Promise<MessageItem> => {
     const options = {
+      file,
       uuid: uuidV4(),
       soundPath: "",
       sourceUrl: "",
       dataSize: file.size,
-      // soundType: getFileType(file.name),
-      soundType: "wav",
+      soundType: file.type,
+      // soundType: "wav",
       duration,
     };
-    return (await IMSDK.createSoundMessage(options)).data as MessageItem;
+    return (await IMSDK.createSoundMessageByFile(options)).data as MessageItem;
   };
 
   const getVideoMessage = async (

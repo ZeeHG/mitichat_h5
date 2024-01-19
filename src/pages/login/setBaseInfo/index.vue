@@ -86,6 +86,7 @@ const login = async () => {
   try {
     const { data: { chatToken, imToken, userID } } = await register({
       verifyCode: props.baseData.verificationCode,
+      invitationCode: props.baseData.invitationCode,
       deviceID: '',
       user: {
         ...baseInfo,
