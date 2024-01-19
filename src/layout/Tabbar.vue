@@ -2,7 +2,7 @@
   <van-tabbar :border="false" fixed safe-area-inset-bottom placeholder route>
     <van-tabbar-item to="/conversation" :badge="conversationStore.storeUnReadCount"
       :badge-props="{ max: 99, showZero: false }">
-      <span>miti</span>
+      <span>{{ $t('chat') }}</span>
       <template #icon="props">
         <img :src="props.active ? conversation_active : conversation" />
       </template>
@@ -13,7 +13,7 @@
         <img :src="props.active ? contacts_active : contacts" />
       </template>
     </van-tabbar-item>
-    <van-tabbar-item to="/workbench">
+    <van-tabbar-item to="/moments">
       <span>{{ $t('workbench') }}</span>
       <template #icon="props">
         <img :src="props.active ? workbench_active : workbench" />
@@ -57,7 +57,7 @@ const unHandleApplicationCount = computed(() => contactStore.unHandleFriendAppli
 }
 
 :deep(.van-tabbar-item__icon img) {
-  height: 28px;
+  height: 24px;
 }
 
 :deep(.van-tabbar-item) {

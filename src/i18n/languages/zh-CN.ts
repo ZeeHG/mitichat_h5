@@ -10,7 +10,7 @@ export const lang = {
   loading: "加载中",
   chats: "消息",
   contact: "通讯录",
-  workbench: "工作台",
+  workbench: "发现",
   profile: "我的",
   welcome: "欢迎使用miti",
   emptySearchDesc: "搜索结果为空",
@@ -428,7 +428,7 @@ export const lang = {
     notRegistered: "账号未注册",
     passwordError: "密码错误",
     notSamePassword: "两次输入的密码不一致",
-    getTokenFailed: "获取IM token失败",
+    getTokenFailed: "获取miti token失败",
     codeInvalidOrExpired: "验证码错误或已过期",
     registerFailed: "注册失败",
     loginFailed: "登录失败",
@@ -509,4 +509,5 @@ export const lang = {
     enUS: "英文",
   },
   vant: zhLocale,
+  chat: "聊天"
 };

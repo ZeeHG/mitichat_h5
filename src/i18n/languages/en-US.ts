@@ -10,8 +10,8 @@ export const lang = {
   loading: "Loading",
   chats: "Messages",
   contact: "Contacts",
-  workbench: "Workbench",
-  profile: "Mine",
+  workbench: "Discover",
+  profile: "Me",
   welcome: "Welcome to miti",
   emptySearchDesc: "No search results",
   offlinePushTitle: "You have a new message",
@@ -434,7 +434,7 @@ export const lang = {
     notRegistered: "Account not registered",
     passwordError: "Password error",
     notSamePassword: "Passwords entered do not match",
-    getTokenFailed: "Failed to get IM token",
+    getTokenFailed: "Failed to get miti token",
     codeInvalidOrExpired: "Verification code is invalid or expired",
     registerFailed: "Registration failed",
     loginFailed: "Login failed",
@@ -519,4 +519,5 @@ export const lang = {
     enUS: "English",
   },
   vant: enLocale,
+  chat: "Chats"
 };

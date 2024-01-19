@@ -57,8 +57,15 @@
     </van-form>
 
     <van-popup v-model:show="showAreaCode" round position="bottom">
-      <van-picker :columns="countryCode" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"
-        :columns-field-names="{ text: 'phone_code', value: 'phone_code', children: 'children' }" />
+      <van-picker :columns="countryCodeList" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"
+        :columns-field-names="{ text: 'phone_code', value: 'phone_code', children: 'children' }">
+        <template v-slot:columns-top>
+          <div class="border border-gap-text rounded-lg mx-4 mt-2 overflow-hidden px-[10px]">
+            <van-field v-model="countryCodeInput" />
+            <!-- <input type="text" v-model="countryCodeInput" class="h-[40px] w-full"> -->
+          </div>
+        </template>
+      </van-picker>
     </van-popup>
   </div>
 </template>
@@ -83,7 +90,7 @@ const props = defineProps<{ isRegiste: boolean, isByEmail: boolean }>()
 const formData = reactive({
   email: '',
   phoneNumber: '',
-  areaCode: '+86',
+  areaCode: '+1',
   invitationCode: '',
   accept: true,
   verificationCode: ''
@@ -91,8 +98,10 @@ const formData = reactive({
 const showAreaCode = ref(false)
 const count = ref(0)
 let timer: NodeJS.Timer
+const countryCodeInput = ref('');
 
 const needInvitationCode = computed(() => !!userStore.storeAppConfig.needInvitationCodeRegister)
+const countryCodeList: any = computed(() => countryCode.filter((item: any) => item.phone_code.includes(countryCodeInput.value)));
 
 const onSubmit = () => {
   if (!props.isByEmail && !phoneRegExp.test(formData.phoneNumber)) {
@@ -152,7 +161,8 @@ const onSubmit = () => {
 }
 
 const onConfirmAreaCode = ({ selectedValues }: PickerConfirmEventParams) => {
-  formData.areaCode = String(selectedValues[0])
+  console.log(countryCodeList.value.length, selectedValues)
+  formData.areaCode = countryCodeList.value.length? String(selectedValues[0]) : formData.areaCode;
   showAreaCode.value = false
 }
 

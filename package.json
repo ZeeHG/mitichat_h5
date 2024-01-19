@@ -28,7 +28,7 @@
     "twemoji": "^14.0.2",
     "uqrcodejs": "^4.0.6",
     "uuid": "^9.0.0",
-    "vant": "^4.8.0",
+    "vant": "^4.8.2",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue": "^3.2.37",
     "vue-request": "^2.0.4",
