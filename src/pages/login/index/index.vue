@@ -120,7 +120,7 @@ const countryCodeList: any = computed(() => countryCode.filter((item: any) => it
 const formData = reactive({
   phoneNumber: localStorage.getItem("IMAccount") ?? '',
   email: "",
-  areaCode: '+86',
+  areaCode: '+1',
   password: '',
   verificationCode: '',
   accept: true
