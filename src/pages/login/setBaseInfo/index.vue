@@ -97,7 +97,7 @@ const login = async () => {
       },
     })
     setIMProfile({ chatToken, imToken, userID })
-    router.push('conversation')
+    router.push('login')
   } catch (error) {
     loading.value = false
     feedbackToast({ error, message: t('messageTip.registerFailed') })
