@@ -1,0 +1,18 @@
+{
+    "name": "miti.chat",
+    "short_name": "miti.chat",
+    "display": "standalone",
+    "start_url": "/conversation",
+    "icons": [
+      {
+        "src": "/favicon.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }
+    ],
+    "orientation": "portrait",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "splash_pages": null
+  }
+  

@@ -45,7 +45,7 @@ export default function useConversationToggle() {
     )
       return;
     conversationStore.updateCurrentConversation({ ...conversation });
-    router.push("chat");
+    router.push("myChat");
   };
 
   return {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar :title="'朋友圈'" placeholder fixed left-arrow :clickable="false" :border="false"
+    <van-nav-bar :title="$t('workbench')" placeholder fixed left-arrow :clickable="false" :border="false"
       @click-left="router.back()">
       <template #left>
         <img class="w-3 h-5" :src="arrows" alt="" />

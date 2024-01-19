@@ -101,7 +101,7 @@ const activePrefix = computed(() => props.source.groupAtType !== GroupAtType.AtN
 
 const clickConversation = () => {
   conversationStore.updateCurrentConversation(props.source);
-  let path = 'chat'
+  let path = 'myChat'
   if (props.source.conversationType === SessionType.Notification) {
     path = 'notifyMessageList'
   }

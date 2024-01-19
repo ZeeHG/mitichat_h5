@@ -80,9 +80,9 @@
       <van-picker :columns="countryCodeList" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"
         :columns-field-names="{ text: 'phone_code', value: 'phone_code', children: 'children' }">
         <template v-slot:columns-top>
-          <div class="border border-gap-text rounded-lg mx-4 mt-2 overflow-hidden px-[10px]">
-            <van-field v-model="countryCodeInput" />
-            <!-- <input type="text" v-model="countryCodeInput" class="h-[40px] w-full"> -->
+          <div class="border border-gap-text rounded-lg mx-4 overflow-hidden px-[10px]">
+            <!-- <van-field v-model="countryCodeInput"/> -->
+            <input type="text" v-model="countryCodeInput" class="h-[32px] w-full">
           </div>
         </template>
       </van-picker>

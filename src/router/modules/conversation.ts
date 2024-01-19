@@ -2,7 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 
 const conversationRouters: Array<RouteRecordRaw> = [
   {
-    path: "/chat",
+    path: "/myChat",
     name: "Chat",
     component: () => import("@pages/conversation/chat/index.vue"),
   },

@@ -85,7 +85,7 @@ const myMenuList = computed(() => [
 const momentsMenuList = computed(() => [
   {
     id: ContactMenuEnum.Moments,
-    text: '朋友圈',
+    text: t('workbench'),
     icon: moments,
     badge: 0
   },
