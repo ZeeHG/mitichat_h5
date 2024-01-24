@@ -25,6 +25,8 @@ import reply from '@/assets/images/messageMenu/reply.png'
 import revoke from '@/assets/images/messageMenu/revoke.png'
 import multiple from '@/assets/images/messageMenu/check.png'
 import del from '@/assets/images/messageMenu/remove.png'
+import translate from '@/assets/images/messageMenu/translate.png'
+import un_translate from '@/assets/images/messageMenu/un_translate.png'
 
 import { PopoverPlacement, showLoadingToast } from 'vant';
 import { onLongPress, useClipboard, useElementBounding } from '@vueuse/core';
@@ -66,6 +68,18 @@ const menuList = [
     type: MessageMenuType.Delete,
   },
   {
+    title: t('messageMenu.translate'),
+    icon: translate,
+    hidden: false,
+    type: MessageMenuType.Translate,
+  },
+  {
+    title: t('messageMenu.unTranslate'),
+    icon: un_translate,
+    hidden: false,
+    type: MessageMenuType.UnTranslate,
+  },
+  {
     title: t('messageMenu.forward'),
     icon: forward,
     hidden: false,
@@ -94,10 +108,12 @@ const menuList = [
 watch(locale, () => {
   menuList[0].title = t('messageMenu.copy')
   menuList[1].title = t('messageMenu.delete')
-  menuList[2].title = t('messageMenu.forward')
-  menuList[3].title = t('messageMenu.replay')
-  menuList[4].title = t('messageMenu.multipalChoise')
-  menuList[5].title = t('messageMenu.revoke')
+  menuList[2].title = t('messageMenu.translate')
+  menuList[3].title = t('messageMenu.unTranslate')
+  menuList[4].title = t('messageMenu.forward')
+  menuList[5].title = t('messageMenu.replay')
+  menuList[6].title = t('messageMenu.multipalChoise')
+  menuList[7].title = t('messageMenu.revoke')
 });
 
 const show = ref(false)
@@ -119,12 +135,23 @@ const canRevoke = computed(() => {
   return props.message.sendID === userStore.storeSelfInfo.userID && interval < 1440;
 })
 
+// todo
+const canTranslate = computed(() => {
+  return true;
+})
+
 const computedMenus = computed(() => {
   menuList.map(menu => {
     if (menu.type === MessageMenuType.Copy && !canCopyTypes.includes(props.message.contentType)) {
       menu.hidden = true
     }
     if (menu.type === MessageMenuType.Revoke && !canRevoke.value) {
+      menu.hidden = true
+    }
+    if (menu.type === MessageMenuType.Translate && !canTranslate.value) {
+      menu.hidden = true
+    }
+    if (menu.type === MessageMenuType.UnTranslate && canTranslate.value) {
       menu.hidden = true
     }
   })
@@ -184,6 +211,10 @@ const menuClick = (type: MessageMenuType) => {
         .then(() => messageStore.deleteOneMessage(props.message))
         .catch(error => feedbackToast({ error }))
         .finally(() => loadingToast?.close())
+      break;
+    case MessageMenuType.Translate:
+      break;
+    case MessageMenuType.UnTranslate:
       break;
     case MessageMenuType.ForWard:
       router.push({

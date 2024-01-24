@@ -16,5 +16,7 @@ export enum MessageMenuType {
   Replay,
   Revoke,
   Multiple,
-  Emoji
+  Emoji,
+  UnTranslate,
+  Translate
 }

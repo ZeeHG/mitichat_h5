@@ -2,6 +2,7 @@ import request from "@utils/request";
 import { BusinessUserInfo } from "./data";
 import { getChatToken, getChatUrl } from "@/utils/storage";
 import useUserStore, { AppConfig } from "@/store/modules/user";
+import { SessionType } from "open-im-sdk-wasm/lib/types/enum";
 
 // new
 export const updateBusinessInfo = (params: Partial<BusinessUserInfo>) =>
@@ -58,3 +59,36 @@ export const getAppConfig = (): Promise<{ data: { config: AppConfig } }> => {
     }
   );
 };
+
+export const setConversationConfig = (userID: string, conversation: {
+  "conversationID": string,
+  "conversationType": SessionType,
+  "userID": string,
+  "ex": string
+}) =>
+  request.post<any>(
+    "/translate/config/set",
+    JSON.stringify({
+      'userIDs': [userID],
+      'conversation': conversation
+    }),
+    {
+      headers: {
+        token: getChatToken(),
+      },
+    }
+  );
+
+export const getConversationsConfig = (ownerUserID: string, conversationIDs: string[]) =>
+  request.post<any>(
+    "/translate/config/get",
+    JSON.stringify({
+      'conversationIDs': conversationIDs,
+      'ownerUserID': ownerUserID
+    }),
+    {
+      headers: {
+        token: getChatToken(),
+      },
+    }
+  );

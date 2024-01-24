@@ -102,8 +102,13 @@ const countryCodeInput = ref('');
 const needInvitationCode = computed(() => !!userStore.storeAppConfig.needInvitationCodeRegister)
 const countryCodeList: any = computed(() => countryCode.filter((item: any) => item.phone_code.includes(countryCodeInput.value)));
 
+const checkPhone = () => {
+  if(formData.areaCode !== "+86") return true;
+  return phoneRegExp.test(formData.phoneNumber);
+}
+
 const onSubmit = () => {
-  if (!props.isByEmail && !phoneRegExp.test(formData.phoneNumber)) {
+  if (!props.isByEmail && !checkPhone()) {
     feedbackToast({
       message: t('messageTip.correctPhoneNumber'),
       error: t('messageTip.correctPhoneNumber')
