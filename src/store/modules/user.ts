@@ -1,10 +1,10 @@
 import { IMSDK } from "@/utils/imCommon";
 import { FullUserItem } from "@/utils/open-im-sdk-wasm/types/entity";
-import { MessageReceiveOptType, SessionType } from "@/utils/open-im-sdk-wasm/types/enum";
+import { MessageReceiveOptType } from "@/utils/open-im-sdk-wasm/types/enum";
 import { defineStore } from "pinia";
 import store from "../index";
 import { BusinessUserInfo } from "@/api/data";
-import { getAppConfig, getBusinessInfo, getConversationsConfig, setConversationConfig } from "@/api/user";
+import { getAppConfig, getBusinessInfo } from "@/api/user";
 import { feedbackToast, filterEmptyValue } from "@/utils/common";
 import { clearIMProfile } from "@/utils/storage";
 import useContactStore from "./contact";
@@ -75,22 +75,6 @@ const useStore = defineStore("user", {
       this.selfInfo = {} as BusinessUserInfo;
       useConversatione.clearConversationStore();
       useContact.clearContactStore();
-    },
-    async getConversationsConfigFromReq(conversationIDs: string[]) {
-      try {
-        const { data } = await getConversationsConfig(this.selfInfo.userID, conversationIDs);
-        this.appConfig = data;
-      } catch (error) {}
-    },
-    async setTranslateConfigFromReq(conversation: {
-      "conversationID": string,
-      "conversationType": SessionType,
-      "userID": string,
-      "ex": string
-    }) {
-      try {
-        await setConversationConfig(this.selfInfo.userID, conversation);
-      } catch (error) {}
     },
   },
 });

@@ -60,7 +60,7 @@ export const getAppConfig = (): Promise<{ data: { config: AppConfig } }> => {
   );
 };
 
-export const setConversationConfig = (userID: string, conversation: {
+export const setConversationExConfig = (userID: string, conversationParams: {
   "conversationID": string,
   "conversationType": SessionType,
   "userID": string,
@@ -70,7 +70,7 @@ export const setConversationConfig = (userID: string, conversation: {
     "/translate/config/set",
     JSON.stringify({
       'userIDs': [userID],
-      'conversation': conversation
+      'conversation': conversationParams
     }),
     {
       headers: {
@@ -79,13 +79,29 @@ export const setConversationConfig = (userID: string, conversation: {
     }
   );
 
-export const getConversationsConfig = (ownerUserID: string, conversationIDs: string[]) =>
+export const getConversationsExConfig = (ownerUserID: string, conversationIDs: string[]) =>
   request.post<any>(
     "/translate/config/get",
     JSON.stringify({
       'conversationIDs': conversationIDs,
       'ownerUserID': ownerUserID
     }),
+    {
+      headers: {
+        token: getChatToken(),
+      },
+    }
+  );
+
+export const translateMessage = (params: {
+  userID: string,
+  ClientMsgID: string,
+  Query: string,
+  TargetLang: string
+}) =>
+  request.post<any>(
+    "/translate/do",
+    JSON.stringify(params),
     {
       headers: {
         token: getChatToken(),

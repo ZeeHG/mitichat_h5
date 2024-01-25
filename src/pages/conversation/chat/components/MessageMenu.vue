@@ -38,6 +38,8 @@ import useConversationStore from '@/store/modules/conversation';
 import useUserStore from '@/store/modules/user';
 import emitter from '@/utils/events';
 import { ToastWrapperInstance } from 'vant/lib/toast/types';
+import { translateMessage } from '@/api/user';
+import { i18n } from '@/i18n';
 
 const canCopyTypes = [MessageType.AtTextMessage, MessageType.TextMessage, MessageType.QuoteMessage]
 
@@ -135,9 +137,17 @@ const canRevoke = computed(() => {
   return props.message.sendID === userStore.storeSelfInfo.userID && interval < 1440;
 })
 
-// todo
-const canTranslate = computed(() => {
-  return true;
+const targetTranslate:any = computed(() => {
+  const targetTranslate = useMessageStore().msgTranslate[props.message.clientMsgID];
+  return targetTranslate;
+})
+
+const hideTranslateMenu = computed(() => {
+  return ![MessageType.AtTextMessage, MessageType.TextMessage].includes(props.message.contentType) || targetTranslate.value?.status === "show";
+})
+
+const hideUnTranslateMenu = computed(() => {
+  return ![MessageType.AtTextMessage, MessageType.TextMessage].includes(props.message.contentType) || targetTranslate.value?.status !== "show";
 })
 
 const computedMenus = computed(() => {
@@ -148,11 +158,11 @@ const computedMenus = computed(() => {
     if (menu.type === MessageMenuType.Revoke && !canRevoke.value) {
       menu.hidden = true
     }
-    if (menu.type === MessageMenuType.Translate && !canTranslate.value) {
-      menu.hidden = true
+    if (menu.type === MessageMenuType.Translate) {
+      menu.hidden = hideTranslateMenu.value
     }
-    if (menu.type === MessageMenuType.UnTranslate && canTranslate.value) {
-      menu.hidden = true
+    if (menu.type === MessageMenuType.UnTranslate) {
+      menu.hidden = hideUnTranslateMenu.value;
     }
   })
   return menuList.filter(menu => !menu.hidden)
@@ -192,6 +202,42 @@ const showLoading = () => {
   });
 }
 
+const translateMsg = async () => {
+  if(![MessageType.AtTextMessage, MessageType.TextMessage].includes(props.message.contentType)) return;
+  const config = conversationStore.getCurrentConversationExConfig();
+  let targetLang = config?.langConfig?.targetLang ? config?.langConfig?.targetLang : 'auto';
+  targetLang = targetLang === 'auto' ? i18n.global.locale : targetLang;
+  const query = props.message?.atTextElem?.text ?? props.message?.textElem?.content ?? "";
+  const userID = userStore.selfInfo.userID;
+  const clientMsgID = props.message.clientMsgID;
+  if (query) {
+    try {
+      messageStore.updateMsgTranslate(clientMsgID ,{"status": "loading"});
+      const { data: { content } } = await translateMessage({
+        userID,
+        ClientMsgID: clientMsgID,
+        Query: query,
+        TargetLang: targetLang
+      });
+      const newConfig = {
+        "targetLang": targetLang,
+        [targetLang]: content,
+        "origin": query,
+        "clientMsgID": clientMsgID,
+        "status": "show"
+      }
+      messageStore.updateMsgTranslate(clientMsgID , newConfig);
+    } catch (e) { 
+      messageStore.updateMsgTranslate(clientMsgID , {"status": "fail"});
+    }
+  }
+}
+
+const UnTranslateMsg = async () => {
+  const clientMsgID = props.message.clientMsgID;
+  messageStore.updateMsgTranslate(clientMsgID , {"status": "hidden"});
+}
+
 const menuClick = (type: MessageMenuType) => {
   switch (type) {
     case MessageMenuType.Copy:
@@ -213,8 +259,10 @@ const menuClick = (type: MessageMenuType) => {
         .finally(() => loadingToast?.close())
       break;
     case MessageMenuType.Translate:
+      translateMsg();
       break;
     case MessageMenuType.UnTranslate:
+      UnTranslateMsg();
       break;
     case MessageMenuType.ForWard:
       router.push({

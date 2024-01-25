@@ -43,8 +43,7 @@ import useConversationStore from '@/store/modules/conversation'
 const { t } = useI18n()
 const showTranslatePicker = ref(false);
 const checkedAutoTranslate = ref(false);
-const targetLang = ref("auto");
-const userStore = useUserStore();
+const targetLang = ref(["auto"]);
 const conversationStore = useConversationStore();
 const columns = [
   { text: t('lang.auto'), value: "auto" },
@@ -223,18 +222,16 @@ const confirmTranslateConfig = async () => {
   const exJson = ex ? JSON.parse(ex) : {};
   exJson.langConfig = {
     autoTranslate: checkedAutoTranslate.value,
-    targetLang: targetLang.value
+    targetLang: targetLang.value[0]
   };
   const exJsonStr = JSON.stringify(exJson);
 
-  await userStore.setTranslateConfigFromReq({
+  await conversationStore.setExConfigFromReq({
     conversationID: conversationStore.currentConversation.conversationID,
     conversationType: conversationStore.currentConversation.conversationType,
     userID: useUserStore().storeSelfInfo.userID,
     ex: exJsonStr
   });
-
-  conversationStore.currentConversation.ex = exJsonStr;
 }
 
 const clickAction = ({ type }: ChatFooterActionItem) => {
@@ -265,6 +262,9 @@ const clickAction = ({ type }: ChatFooterActionItem) => {
       })
       break;
     case ChatFooterActionType.AutoTranslation:
+      const config = conversationStore.getCurrentConversationExConfig();
+      checkedAutoTranslate.value = !!config?.langConfig?.autoTranslate;
+      targetLang.value = config?.langConfig?.targetLang ? [config?.langConfig?.targetLang] : ['auto'];
       showTranslatePicker.value = true;
       break;
     case ChatFooterActionType.Location:
@@ -318,6 +318,6 @@ const afterReadFile = (data: UploaderFileListItem | UploaderFileListItem[]) => {
 
 :deep(.van-grid-item__content) {
   background: none;
-  padding: 6px 8px;
+  padding: 6px 2px;
 }
 </style>

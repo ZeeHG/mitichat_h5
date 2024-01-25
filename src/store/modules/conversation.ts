@@ -10,6 +10,8 @@ import { defineStore } from "pinia";
 import store from "../index";
 import useContactStore from "./contact";
 import useUserStore from "./user";
+import { SessionType } from "@/utils/open-im-sdk-wasm/types/enum";
+import { getConversationsExConfig, setConversationExConfig } from "@/api/user";
 
 interface StateType {
   conversationList: ConversationItem[];
@@ -128,6 +130,28 @@ const useStore = defineStore("conversation", {
       this.currentGroupInfo = {} as GroupItem;
       this.currentMemberInGroup = {} as GroupMemberItem;
       this.quoteMessage = undefined;
+    },
+    async setExConfigFromReq(conversationParams: {
+      "conversationID": string,
+      "conversationType": SessionType,
+      "userID": string,
+      "ex": string
+    }) {
+      const userStore = useUserStore();
+      try {
+        await setConversationExConfig(userStore.selfInfo.userID, conversationParams);
+        this.currentConversation.ex = conversationParams.ex;
+      } catch (error) {}
+    },
+    getCurrentConversationExConfig() {
+      const ex = this.currentConversation.ex;
+      return ex? JSON.parse(ex) : null;
+    },
+    async getExConfigFromReq(conversationIDs: string[]) {
+      const userStore = useUserStore();
+      try {
+        const { data } = await getConversationsExConfig(userStore.selfInfo.userID, conversationIDs);
+      } catch (error) {}
     },
   },
 });

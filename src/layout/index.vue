@@ -21,6 +21,7 @@ import useContactStore from "@/store/modules/contact";
 import { useGlobalEvent } from './useGlobalEvent';
 import { getApiUrl, getIMToken, getIMUserID, getWsUrl } from "@/utils/storage";
 import { IMSDK, initStore } from "@/utils/imCommon";
+import useMessageStore from '@/store/modules/message';
 
 useGlobalEvent()
 const router = useRouter();
@@ -65,6 +66,7 @@ const tryLogin = async () => {
       platformID: 5,
     })
     initStore();
+    useMessageStore().initMsgTranslate(IMUserID!);
   } catch (error) {
     router.push('/login');
   }

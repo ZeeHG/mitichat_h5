@@ -206,6 +206,7 @@ export const lang = {
   offFlash: "关闭闪光灯",
   onFlash: "开启闪光灯",
   targetLang: "目标语言",
+  translateFail: "翻译失败",
   lang: {
     "auto": "自动",
     "English": "英语",

@@ -34,6 +34,8 @@ import { feedbackToast } from "@/utils/common";
 
 import messageRing from "@assets/audio/newMsg.mp3";
 import { BusinessAllowType } from "@/api/data";
+import { i18n } from "@/i18n";
+import { translateMessage } from "@/api/user";
 
 export function useGlobalEvent() {
   const userStore = useUserStore();
@@ -189,6 +191,7 @@ export function useGlobalEvent() {
         } else {
           newServerMsg.isAppend = true;
           messageStore.pushNewMessage(newServerMsg);
+          autoTranslateMsg(newServerMsg);
           emitter.emit("CHAT_MAIN_SCROLL_TO_BOTTOM", true);
         }
       }
@@ -198,6 +201,37 @@ export function useGlobalEvent() {
         newServerMsg.sendID !== userStore.storeSelfInfo.userID
       ) {
         useThrottleFn(() => newMessageNotify(newServerMsg), 1000)();
+      }
+    }
+  };
+  const autoTranslateMsg = async (msg: ExMessageItem) => {
+    if(![MessageType.AtTextMessage, MessageType.TextMessage].includes(msg.contentType)) return;
+    const config = conversationStore.getCurrentConversationExConfig();
+    if (!config?.langConfig?.autoTranslate) return;
+    let targetLang = config?.langConfig?.targetLang ? config?.langConfig?.targetLang : 'auto';
+    targetLang = targetLang === 'auto' ? i18n.global.locale : targetLang;
+    const query = msg?.atTextElem?.text ?? msg?.textElem?.content ?? "";
+    const userID = userStore.selfInfo.userID;
+    const clientMsgID = msg.clientMsgID;
+    if (query) {
+      try {
+        messageStore.updateMsgTranslate(clientMsgID ,{"status": "loading"});
+        const { data: { content } } = await translateMessage({
+          userID,
+          ClientMsgID: clientMsgID,
+          Query: query,
+          TargetLang: targetLang
+        });
+        const newConfig = {
+          "targetLang": targetLang,
+          [targetLang]: content,
+          "origin": query,
+          "clientMsgID": clientMsgID,
+          "status": "show"
+        }
+        messageStore.updateMsgTranslate(clientMsgID , newConfig);
+      } catch (e) { 
+        messageStore.updateMsgTranslate(clientMsgID , {"status": "fail"});
       }
     }
   };

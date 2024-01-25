@@ -20,6 +20,7 @@
             :disabled="showCheck || isActive" :is="getRenderComp"></component>
           <MessageSendState v-if="!isSelfMsg" :message="source" />
         </MessageMenu>
+        <TranslateRenderer v-if="[MessageType.AtTextMessage, MessageType.TextMessage].includes(source.contentType)" :message="source" />
         <QuoteMessageRenderer v-if="source.contentType === MessageType.QuoteMessage" :message="source" />
         <MessageReadState v-if="isSelfMsg && !groupAnnounceData.notification && source.status === MessageStatus.Succeed"
           :message="source" :disabled="showCheck" />
@@ -31,6 +32,7 @@
 <script setup lang="ts">
 import Avatar from "@/components/Avatar/index.vue";
 import TextMessageRenderer from "./TextMessageRenderer.vue";
+import TranslateRenderer from "./TranslateRenderer.vue";
 import AudioMessageRenderer from "./AudioMessageRenderer.vue";
 import CardMessageRenderer from "./CardMessageRenderer.vue";
 import FileMessageRenderer from "./FileMessageRenderer.vue";

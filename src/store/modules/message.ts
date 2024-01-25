@@ -5,11 +5,13 @@ import { MessageType } from "@/utils/open-im-sdk-wasm/types/enum";
 import { GetAdvancedHistoryMsgParams } from "@/utils/open-im-sdk-wasm/types/params";
 import { defineStore } from "pinia";
 import store from "../index";
+import useUserStore from "./user";
 
 interface StateType {
   historyMessageList: ExMessageItem[];
   hasMore: boolean;
   previewImgList: string[];
+  msgTranslate: Record<string, Record<string, any>>;
 }
 
 type ExType = {
@@ -36,11 +38,13 @@ const useStore = defineStore("message", {
     historyMessageList: [],
     hasMore: true,
     previewImgList: [],
+    msgTranslate: {}
   }),
   getters: {
     storeHistoryMessageList: (state) => state.historyMessageList,
     storeHistoryMessageHasMore: (state) => state.hasMore,
     storePreviewImgList: (state) => state.previewImgList,
+    storeMsgTranslate: (state) => state.msgTranslate,
   },
   actions: {
     async getHistoryMessageListFromReq(
@@ -163,6 +167,41 @@ const useStore = defineStore("message", {
           this.updateOneMessage(newMessage);
         }
       });
+    },
+    initMsgTranslate(userID?: string) {
+      const userStore = useUserStore();
+      userID = userID ?? userStore.selfInfo.userID;
+      if(userID){
+        const storageKey = `${userID}_msgTranslate`;
+        const storage = JSON.parse(localStorage.getItem(storageKey) ?? "{}");
+        Object.values(storage).map((item: any) => {
+          if(item.status === "loading"){
+            item.status = "hidden";
+          }
+        });
+        this.msgTranslate = storage;
+      }
+    },
+    updateMsgTranslate(clientMsgID: string, data: Record<string, any>) {
+      // {
+      //   "targetLang": targetLang,
+      //   [targetLang]: content,
+      //   "origin": query,
+      //   "clientMsgID": clientMsgID,
+      //   "status": "show"
+      // }
+      const userStore = useUserStore();
+      const userID = userStore.selfInfo.userID;
+      const storageKey = `${userID}_msgTranslate`;
+      const storage = JSON.parse(localStorage.getItem(storageKey) ?? "{}");
+      if (storage[clientMsgID]) {
+        Object.assign(storage[clientMsgID], data);
+        Object.assign(this.msgTranslate[clientMsgID], data);
+      } else {
+        storage[clientMsgID] = data;
+        this.msgTranslate[clientMsgID] = data;
+      }
+      localStorage.setItem(storageKey, JSON.stringify(storage));
     },
   },
 });

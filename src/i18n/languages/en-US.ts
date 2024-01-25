@@ -209,6 +209,7 @@ export const lang = {
   offFlash: "Turn Off Flash",
   onFlash: "Turn On Flash",
   targetLang: "Translate to",
+  translateFail: "Translation Failed",
   lang: {
     "auto": "Auto",
     "English": "English",

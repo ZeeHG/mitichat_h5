@@ -4,7 +4,7 @@ import { getChatUrl } from "./storage";
 
 const serves = axios.create({
   baseURL: getChatUrl(),
-  timeout: 5000,
+  timeout: 30000,
 });
 
 serves.interceptors.request.use(
