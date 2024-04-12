@@ -7,10 +7,10 @@
         <img :src="props.active ? conversation_active : conversation" />
       </template>
     </van-tabbar-item>
-    <van-tabbar-item to="/contact" :badge="unHandleApplicationCount" :badge-props="{ max: 99, showZero: false }">
-      <span>{{ $t('contact') }}</span>
+    <van-tabbar-item to="/moments" :badge-props="{ max: 99, showZero: false }">
+      <span>{{ $t('discover') }}</span>
       <template #icon="props">
-        <img :src="props.active ? contacts_active : contacts" />
+        <img :src="props.active ? discover_active : discover" />
       </template>
     </van-tabbar-item>
     <van-tabbar-item to="/moments">
@@ -32,8 +32,8 @@
 import conversation from "@assets/images/tabbar/conversation.png";
 import conversation_active from "@assets/images/tabbar/conversation_active.png";
 
-import contacts from "@assets/images/tabbar/contacts.png";
-import contacts_active from "@assets/images/tabbar/contacts_active.png";
+import discover from "@assets/images/tabbar/discover.png";
+import discover_active from "@assets/images/tabbar/discover_active.png";
 
 import workbench from '@assets/images/tabbar/workbench.png'
 import workbench_active from '@assets/images/tabbar/workbench_active.png'
@@ -42,26 +42,25 @@ import profile from "@assets/images/tabbar/profile.png";
 import profile_active from "@assets/images/tabbar/profile_active.png";
 
 import useConversationStore from "@/store/modules/conversation";
-import useContactStore from "@/store/modules/contact";
 
 const conversationStore = useConversationStore();
-const contactStore = useContactStore();
 
-const unHandleApplicationCount = computed(() => contactStore.unHandleFriendApplicationNum + contactStore.unHandleGroupApplicationNum)
 </script>
 
 <style lang='scss' scoped>
 :deep(.van-tabbar) {
-  height: 66px;
+  height: 56px;
   border-top: 1px solid #EAEAEA;
+  background-color: #FFFFFF;
 }
 
 :deep(.van-tabbar-item__icon img) {
-  height: 24px;
+  height: 22px;
+  vertical-align: bottom;
 }
 
 :deep(.van-tabbar-item) {
-  color: #8E9AB0;
+  color: #B3B3B3;
 }
 
 :deep(.van-tabbar-item--active) {
@@ -69,6 +68,6 @@ const unHandleApplicationCount = computed(() => contactStore.unHandleFriendAppli
 }
 
 :deep(.van-tabbar-item__text) {
-  font-size: 10px;
+  font-size: 11px;
 }
 </style>

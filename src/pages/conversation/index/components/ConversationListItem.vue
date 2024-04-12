@@ -1,26 +1,31 @@
 <template>
   <van-swipe-cell>
-    <div @click="clickConversation" class="flex items-center py-[10px] mb-2 ml-[12px] px-[10px] rounded-l-[34px] bg-white active:bg-[#F3F3F3]">
+    <div @click="clickConversation"
+      class="flex items-center py-[8px] mb-2 ml-[12px] px-[10px] rounded-l-[34px] bg-white">
       <div class="pinned" v-if="source.isPinned"></div>
-      <Avatar :size="48" :src="source.faceURL" :desc="source.showName" :is-group="isGroup"
+      <Avatar :size="54" :src="source.faceURL" :desc="source.showName" :is-group="isGroup"
         :is-notification="isNotification" />
-      <div class="flex-1 mx-3 flex justify-evenly flex-col h-12">
-        <div class="text-[15px] truncate max-w-[40vw]">{{ source.showName }}</div>
-        <div class="text-[#666] text-[13px] truncate max-w-[38vw]">
-          <span v-show="messagePrefix" class="mr-1" :class="{ 'text-[#1B72EC]': activePrefix }">{{ messagePrefix
-          }}</span>
-          <span v-html="parseEmoji(formattedMessage)"></span>
+
+      <div class="mx-3 flex justify-between flex-col flex-1">
+        <div class="flex-1 flex justify-between items-center">
+          <div class="text-[18px] truncate max-w-[40vw]">{{ source.showName }}</div>
+          <span class="w-max text-[12px] text-[#999]">{{ latestMessageTime }}</span>
         </div>
-      </div>
-      <div class="flex flex-col h-12 text-xs text-[#999] items-end"
-        :class="{ 'justify-evenly': notAccept || source.unreadCount > 0 }">
-        <span class="w-max">{{ latestMessageTime }}</span>
-        <img v-if="notAccept" class="w-4 h-4" :src="not_accept" alt="">
-        <van-badge v-else class="w-fit" color="#F44038" :content="source.unreadCount" max="99" :show-zero="false" />
+        <div class="flex-1 flex text-[14px] text-[#999] items-center"
+          :class="{ 'justify-between': notAccept || source.unreadCount > 0 }">
+          <div class="truncate max-w-[65vw]">
+            <span v-show="messagePrefix" class="mr-1"
+              :class="{ 'text-[#8443F8]': activePrefix }">{{ messagePrefix}}</span>
+            <span v-html="parseEmoji(formattedMessage)"></span>
+          </div>
+          <img v-if="notAccept" class="w-4 h-4" :src="not_accept" alt="">
+          <van-badge v-else class="w-fit" color="#F44038" :content="source.unreadCount" max="99" :show-zero="false" />
+        </div>
       </div>
     </div>
     <template #right>
-      <van-button color="#1B72EC" :text="$t(!source.isPinned ? 'buttons.pin' : 'buttons.cancelPin')" @click="updatePin" />
+      <van-button color="#8443F8" :text="$t(!source.isPinned ? 'buttons.pin' : 'buttons.cancelPin')"
+        @click="updatePin" />
       <van-button color="#FF381F" :text="$t('buttons.remove')" @click="removeConversation" />
       <van-button v-if="source.unreadCount > 0" color="#8E9AB0" :text="$t('buttons.markAsRead')" @click="markHasRead" />
     </template>
@@ -134,7 +139,7 @@ const markHasRead = () => {
   right: 8px;
   width: 8px;
   height: 8px;
-  background-image: linear-gradient(to bottom left, #314ffe 50%, white 50%);
+  background-image: linear-gradient(to bottom left, #8443F8 50%, white 50%);
 }
 
 :deep(.van-button) {

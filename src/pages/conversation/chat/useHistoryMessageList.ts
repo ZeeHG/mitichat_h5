@@ -30,7 +30,7 @@ export default function useHistoryMessageList({
       ).length
   );
 
-  const onScoll = useThrottleFn(() => {
+  const onScroll = useThrottleFn(() => {
     notScroll.value =
       vsl.value.getScrollSize() - vsl.value.getOffset() >
       vsl.value.getClientSize() * 1.3;
@@ -191,7 +191,7 @@ export default function useHistoryMessageList({
     unReadCount,
     onTotop,
     onItemRendered,
-    onScoll,
+    onScroll,
     scrollToUnread,
   };
 }

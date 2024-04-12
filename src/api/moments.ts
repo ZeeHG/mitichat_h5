@@ -2,7 +2,13 @@ import { WorkMoments, WorkMomentsResponse } from "@/types/moment";
 import { getChatToken } from "@/utils/storage";
 import request from "@utils/request";
 
-export const fetchUserMoments = (pageNumber: number, userID?: string) => {
+
+
+export const fetchUserMoments = (
+  pageNumber: number,
+  userID?: string,
+  momentType: API.Moments.MomentType = 1
+) => {
   const url = `/office/work_moment/find/${!userID ? "recv" : "send"}`;
   return request.post<{ workMoments: WorkMoments[] }>(
     url,
@@ -12,6 +18,7 @@ export const fetchUserMoments = (pageNumber: number, userID?: string) => {
         pageNumber,
         showNumber: 20,
       },
+      momentType,
     }),
     {
       headers: {
@@ -21,7 +28,10 @@ export const fetchUserMoments = (pageNumber: number, userID?: string) => {
   );
 };
 
-export const getMomentLogs = (pageNumber: number) => {
+export const getMomentLogs = (
+  pageNumber: number,
+  momentType: API.Moments.MomentType = 1
+) => {
   return request.post<{ workMoments: WorkMoments[] }>(
     "/office/work_moment/logs",
     JSON.stringify({
@@ -29,6 +39,7 @@ export const getMomentLogs = (pageNumber: number) => {
         pageNumber,
         showNumber: 20,
       },
+      momentType,
     }),
     {
       headers: {
@@ -38,7 +49,9 @@ export const getMomentLogs = (pageNumber: number) => {
   );
 };
 
-export const publishMoment = (params: API.Moments.PublishMomentsParams) => {
+export const publishMoment = (
+  params: API.Moments.PublishMomentsParams
+) => {
   return request.post(
     "/office/work_moment/add",
     JSON.stringify({
@@ -52,11 +65,15 @@ export const publishMoment = (params: API.Moments.PublishMomentsParams) => {
   );
 };
 
-export const getMomentsByID = (workMomentID: string) => {
+export const getMomentsByID = (
+  workMomentID: string,
+  momentType: API.Moments.MomentType = 1
+) => {
   return request.post<{ workMoment: WorkMoments }>(
     "/office/work_moment/get",
     JSON.stringify({
       workMomentID,
+      momentType,
     }),
     {
       headers: {
@@ -123,10 +140,14 @@ export const likeMoment = (params: { workMomentID: string; like: boolean }) => {
   );
 };
 
-export const getMomentsUnreadCount = () => {
+export const getMomentsUnreadCount = (
+  momentType: API.Moments.MomentType = 1
+) => {
   return request.post(
     "/office/work_moment/unread/count",
-    JSON.stringify({}),
+    JSON.stringify({
+      momentType,
+    }),
     {
       headers: {
         token: getChatToken(),
@@ -141,11 +162,12 @@ export enum MomentsClearType {
   All = 3,
 }
 
-export const clearUnreadMoments = (type: MomentsClearType) => {
+export const clearUnreadMoments = (type: MomentsClearType,  momentType: API.Moments.MomentType) => {
   return request.post(
     "/office/work_moment/unread/clear",
     JSON.stringify({
       type,
+      momentType,
     }),
     {
       headers: {

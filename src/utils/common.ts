@@ -239,7 +239,7 @@ export const contentEditableDivRange = () => {
 };
 
 export const genAvatar = (str: string, size: number) => {
-  let colors = ["#0089FF"];
+  let colors = ["#8443F8"];
   let cvs = document.createElement("canvas");
   const fontRadio = str ? 0.4 : 0.2;
   cvs.setAttribute("width", size as unknown as string);

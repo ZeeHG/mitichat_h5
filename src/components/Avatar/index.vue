@@ -1,6 +1,6 @@
 <template>
   <van-image class="my_avator" :style="{ 'min-width': `${size}px` }" :width="size" fit="cover" :height="size"
-    :radius="size/2" :src="getAvatorUrl" @error="errorState = true" />
+    :radius="size / 2" :src="getAvatarUrl" @error="errorState = true" />
 </template>
 
 <script setup lang='ts'>
@@ -18,8 +18,8 @@ type AvatarProps = {
 
 const emit = defineEmits([]);
 const props = withDefaults(defineProps<AvatarProps>(), {
-  size: 36,
-  radius: 6,
+  size: 42,
+  radius: 21,
   isGroup: false,
   isNotification: false,
 });
@@ -33,7 +33,7 @@ const getErrorUrl = computed(() => {
   return genAvatar(props.desc ?? "", props.size)
 })
 
-const getAvatorUrl = computed(() => {
+const getAvatarUrl = computed(() => {
   if (errorState.value) {
     return getErrorUrl.value
   }

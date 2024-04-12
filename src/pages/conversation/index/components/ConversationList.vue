@@ -2,7 +2,7 @@
   <van-pull-refresh v-model="loadState.pullLoading" :disabled="pullDisabled" @refresh="onRefresh">
     <virtual-list ref="vsl" class="my_scrollbar h-full overflow-y-auto" :data-key="'conversationID'"
       :data-sources="conversationStore.storeConversationList" :data-component="ConversationListItemVue"
-      :estimate-size="88" @tobottom="onBottom" @scroll="onScoll" />
+      :estimate-size="88" @tobottom="onBottom" @scroll="onScroll" />
   </van-pull-refresh>
 </template>
 
@@ -30,7 +30,7 @@ const onBottom = async () => {
   }
 }
 
-const onScoll = (e: any) => {
+const onScroll = (e: any) => {
   pullDisabled.value = e.target.scrollTop > 0
 }
 

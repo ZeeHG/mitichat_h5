@@ -117,7 +117,7 @@ const fetchData = async () => {
 }
 
 const tryComment = async () => {
-  await createComment({ workMomentID: commentState.workMomentID, content: commentState.content, replyUserID: commentState.comment.userID })
+  await createComment({ workMomentID: commentState.workMomentID, content: commentState.content, replyUserID: commentState.comment.userID, momentType: 1 })
 }
 
 const startComment = (workMomentID: string, comment: Comments) => {

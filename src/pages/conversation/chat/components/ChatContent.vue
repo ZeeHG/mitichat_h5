@@ -18,8 +18,8 @@
       :data-key="'clientMsgID'" :data-sources="messageStore.storeHistoryMessageList" :topThreshold="120" :keeps="50"
       :data-component="(message: MessageItem) => checkIsNotification(message) ? SystemNotificationItem : MessageItemVue"
       :extra-props="{
-        showCheck: multipleCheckVisible
-      }" :estimate-size="80" @totop="onTotop" @resized="onItemRendered" @scroll="onScoll">
+      showCheck: multipleCheckVisible
+    }" :estimate-size="80" @totop="onTotop" @resized="onItemRendered" @scroll="onScroll">
       <template #header>
         <div v-if="overflow && !initLoading" class="pt-2">
           <div class="spinner" v-show="loadState.loading"></div>
@@ -77,7 +77,7 @@ const historyMessageState = useHistoryMessageList({ cancelMultiple });
 const {
   onItemRendered,
   onTotop,
-  onScoll,
+  onScroll,
   scrollToUnread
 } = historyMessageState;
 const vsl = toRef(historyMessageState, "vsl");

@@ -9,8 +9,8 @@ export const lang = {
   searching: "搜索中...",
   loading: "加载中",
   chats: "消息",
-  contact: "通讯录",
-  workbench: "发现",
+  contact: "朋友",
+  workbench: "圈子",
   profile: "我的",
   welcome: "欢迎使用miti",
   emptySearchDesc: "搜索结果为空",
@@ -207,6 +207,8 @@ export const lang = {
   onFlash: "开启闪光灯",
   targetLang: "目标语言",
   translateFail: "翻译失败",
+  chat: "聊天",
+  discover: "发现",
   lang: {
     "auto": "自动",
     "English": "英语",
@@ -580,5 +582,4 @@ export const lang = {
     enUS: "英文",
   },
   vant: zhLocale,
-  chat: "聊天"
 };

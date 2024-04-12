@@ -1,27 +1,21 @@
 <template>
-  <div class="flex items-center px-[22px] py-4 header">
-    <Avatar :size="48" :src="userStore.storeSelfInfo.faceURL" :desc="userStore.storeSelfInfo.nickname" />
-    <div class="flex-1 mx-3 text-xs">
-      <div class="flex items-center">
-        <div class="text-base truncate max-w-[30vw]">{{ userStore.storeSelfInfo.nickname }}</div>
-        <view class="flex justify-center items-center w-[76px] h-[22px] bg-[#F2F8FF] rounded-md ml-3"
-          v-if="userStore.isSyncing">
-          <img class="loading h-3 w-3" :src="loading" alt="" />
-          <text class="text-xs ml-0.5 text-primary">{{ $t('syncing') }}</text>
-        </view>
-        <view class="flex justify-center items-center w-[76px] h-[22px] bg-[#F2F8FF] rounded-md ml-3"
-          v-if="connectState === connectStateEnum.Loading">
-          <img class="loading h-3 w-3" :src="loading" alt="" />
-          <text class="text-xs ml-0.5 text-primary">{{ $t('connecting') }}</text>
-        </view>
-        <view class="flex justify-center items-center w-[76px] h-[22px] bg-[#FFE1DD] rounded-md ml-3"
-          v-if="connectState === connectStateEnum.Failed">
-          <img class="h-3 w-3" :src="sync_error" alt="" />
-          <text class="text-xs ml-0.5 text-error-text">{{ $t('connectFailed') }}</text>
-        </view>
-      </div>
-    </div>
-    <div class="flex">
+  <div class="flex items-center px-[22px] py-4 header justify-between">
+    <Avatar :size="40" :src="userStore.storeSelfInfo.faceURL" :desc="userStore.storeSelfInfo.nickname" />
+    <van-tabs :active="active" @change="changeTab">
+      <van-tab>
+        <template #title>
+          {{ $t('chat') }}
+        </template>
+      </van-tab>
+      <van-tab>
+        <template #title>
+          <van-badge :content="unHandleApplicationCount" :show-zero="false">
+            {{ $t('contact') }}
+          </van-badge>
+        </template>
+      </van-tab>
+    </van-tabs>
+    <div class="flex pl-[24px]">
       <!-- <img :src="call" alt="call" width="24" class="mr-2" /> -->
       <van-popover :show-arrow="false" v-model:show="showPopover" :actions="conversationTopMoreActions"
         placement="bottom-end" @select="selectMenu">
@@ -29,7 +23,6 @@
           <img :src="add" alt="add" width="24" />
         </template>
       </van-popover>
-
     </div>
   </div>
 </template>
@@ -48,6 +41,7 @@ import useUserStore from '@/store/modules/user';
 import { IMSDK } from '@/utils/imCommon';
 import { CbEvents } from '@/utils/open-im-sdk-wasm/constant';
 import { GroupType } from '@/utils/open-im-sdk-wasm/types/enum';
+import useContactStore from "@/store/modules/contact";
 
 enum ActionEnum {
   Scan,
@@ -62,7 +56,29 @@ enum connectStateEnum {
   Failed
 }
 
+type ConversationTabIndex = {
+  tabIndex: number;
+}
+
+const props = defineProps<ConversationTabIndex>();
+
 const { t, locale } = useI18n();
+const active = props.tabIndex;
+const contactStore = useContactStore();
+
+const unHandleApplicationCount = computed(() => contactStore.unHandleFriendApplicationNum + contactStore.unHandleGroupApplicationNum)
+
+const changeTab = (name: string | number, title: string) => {
+  if (name == 1) {
+    router.push({
+      name: "Contact"
+    });
+  } else {
+    router.push({
+      name: "Conversation"
+    });
+  }
+}
 
 const conversationTopMoreActions: PopoverAction[] = [
   {
@@ -154,5 +170,38 @@ const selectMenu = (_: PopoverAction, idx: ActionEnum) => {
 
 .loading {
   animation: loading 1.5s infinite;
+}
+
+:deep(.van-tabs) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  --van-tabs-bottom-bar-width: 20px;
+
+  .van-tabs__wrap {
+    min-height: var(--van-tabs-line-height);
+    overflow: visible;
+  }
+
+  .van-tab__text{
+    overflow: visible;
+  }
+
+  .van-tabs__nav {
+    background-color: transparent;
+    gap: 15px;
+  }
+
+  .van-tabs__content {
+    flex: 1;
+    overflow: hidden;
+
+    .van-tab__panel {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 </style>

@@ -63,6 +63,10 @@ declare namespace API {
       userID: string;
       userName: string;
     };
+    enum MomentType {
+      circle = 1,
+      xhs = 2,
+    }
     type PublishMomentsParams = {
       content: {
         metas: {
@@ -76,6 +80,7 @@ declare namespace API {
       atUserIDs: string[];
       permissionUserIDs: string[];
       permissionGroupIDs: string[];
+      momentType: MomentType;
     };
     type DeleteCommentParams = {
       workMomentID: string;
@@ -85,6 +90,7 @@ declare namespace API {
       workMomentID: string;
       content: string;
       replyUserID: string;
+      momentType: MomentType;
     };
   }
 }
