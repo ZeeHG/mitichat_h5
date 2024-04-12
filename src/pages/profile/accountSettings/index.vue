@@ -2,7 +2,7 @@
   <div class="page_container">
     <NavBar :title="$t('profileMenu.accountSetting')" />
 
-    <div class="mt-2 mx-3 rounded-md overflow-hidden">
+    <div class="mt-2  rounded-md overflow-hidden">
       <DetailInfoItem :lable="$t('profileMenu.disturbMode')">
         <van-switch size="20" :loading="switchLoading.globalRecvMsgOpt" v-model="globalRecvMsgOpt"
           @change="(e: any) => businessSettingsUpdate(e, 'globalRecvMsgOpt')" />
@@ -13,7 +13,7 @@
       </DetailInfoItem>
     </div>
 
-    <div class="mt-2 mx-3 rounded-md overflow-hidden">
+    <div class="mt-2 rounded-md overflow-hidden">
       <DetailInfoItem :lable="$t('profileMenu.disallowAddMe')">
         <van-switch size="20" :loading="switchLoading.allowAddFriend" v-model="allowAddFriend"
           @change="(e: any) => businessSettingsUpdate(e, 'allowAddFriend')" />
@@ -22,9 +22,10 @@
       <DetailInfoItem arrow :lable="$t('profileMenu.language')" @click="$router.push('/language')" />
     </div>
 
-    <div class="mt-2 mx-3 rounded-md overflow-hidden">
+    <div class="mt-2 rounded-md overflow-hidden">
+      <!-- <DetailInfoItem arrow :lable="$t('unlockSetting')" @click="$router.push('/changePassword')" /> -->
       <DetailInfoItem arrow :lable="$t('changePassword')" @click="$router.push('/changePassword')" />
-      <DetailInfoItem arrow danger :lable="$t('profileMenu.clearChatHistory')" @click="tryClearChatLogs" />
+      <DetailInfoItem arrow  :lable="$t('profileMenu.clearChatHistory')" @click="tryClearChatLogs" />
     </div>
   </div>
 </template>

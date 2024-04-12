@@ -1,9 +1,7 @@
 <template>
   <div class="page_container">
-
-    <img :src="bg" mode="" />
-
-    <view class="w-[90%] h-[98px] rounded-md bg-white flex items-center pl-4 pr-2 mx-auto mt-[-60px]">
+     <img :src="bg" mode=""/>
+    <view class="w-[90%] h-[98px] rounded-md bg-transparent flex items-center pl-4 pr-2 mx-auto mt-[-60px]">
       <Avatar :size="46" :src="userStore.storeSelfInfo.faceURL" :desc="userStore.storeSelfInfo.nickname" />
 
       <view class="id_row flex justify-between items-start h-[46px] flex-col flex-1 ml-2">
@@ -19,17 +17,21 @@
         <img class="w-[24px] h-[24px]" :src="back" alt="" />
       </view>
     </view>
-
-    <div class="w-[90%] mx-auto mt-[10px] bg-white rounded-md">
-      <div v-for="(menu, idx) in profileMenus" :key="idx" class="flex items-center justify-between p-4"
-        @click="menuClick(menu.route)">
-        <div class="flex">
-          <img width="24" :src="menu.icon" alt="" />
-          <span class="ml-3">{{ menu.title }}</span>
-        </div>
-        <img :src="back" width="24" alt="back">
+ 
+    <!-- 外层 div 设置背景颜色 -->
+ <div class="w-[90%] mx-auto mt-[10px] bg-#F7F8FA rounded-md py-4">
+  <div v-for="(menu, idx) in profileMenus" :key="idx" class="bg-white mb-4 rounded-md"
+  @click="menuClick(menu.route)">
+    <!-- 内层 div 保留白色背景和内边距，最后一个元素没有外边距 -->
+    <div class="flex items-center justify-between p-4" :class="{ 'mb-4': idx < profileMenus.length - 1 }">
+      <div class="flex">
+        <img width="24" :src="menu.icon" alt="" />
+        <span class="ml-3">{{ menu.title }}</span>
       </div>
+      <img :src="back" width="24" alt="back" />
     </div>
+  </div>
+ </div>
 
   </div>
 </template>

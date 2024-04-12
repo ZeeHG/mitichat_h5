@@ -202,7 +202,8 @@ export const lang = {
   invitationCode: "Invitation Code",
   optional: "Optional",
   setInfo: "Set Info",
-  changePassword: "Change Password",
+  unlockSettings: "Unclock Settings",
+  changePassword: "Account and Security",
   oldPassword: "Old Password",
   newPassword: "New Password",
   selected: "Selected",
@@ -298,7 +299,7 @@ export const lang = {
     typingMessage: "Type your message here",
     inputName: "Please enter your nickname",
     completeCreation: "Complete Creation",
-    inputEmail:'Please enter your email'
+    inputEmail: 'Please enter your email'
   },
   buttons: {
     emoji: "Emoji",
@@ -524,7 +525,7 @@ export const lang = {
     createSuccess: "Created successfully!",
     uploadFailed: "Upload failed!",
     scanGroupQrCodeTip: "Scan the QR code to join the group immediately",
-    scanQrCodeTip: "Scan the QR code below to add me as a friend",
+    scanQrCodeTip: "Scan the QR code up to add me as a friend",
     loginExpiration: "Current login has expired, please log in again",
     loginKicked:
       "Your account has been logged in on another device, please log in again",

@@ -7,12 +7,10 @@
         <Avatar :src="faceURL" :desc="showName" :is-group="isGroup" :size="48" />
         <div class="ml-4 max-w-[200px] truncate text-[#333]">{{ showName }}</div>
       </div>
-
-      <div class="mt-12 mb-8 text-sm text-[#999]">{{ tip }}</div>
-
       <div class="w-[180px] h-[180px] flex justify-center items-center border-4 border-solid border-[#E8EAEF]">
         <canvas ref="canvas" width="140" height="140"></canvas>
       </div>
+      <div class="mt-12 mb-8 text-sm text-[#999]">{{ tip }}</div>
     </div>
   </div>
 </template>

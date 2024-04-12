@@ -199,7 +199,8 @@ export const lang = {
   invitationCode: "邀请码",
   optional: "选填",
   setInfo: "设置信息",
-  changePassword: "修改密码",
+  unlockSettings: "解锁设置",
+  changePassword: "账号与安全",
   oldPassword: "旧密码",
   newPassword: "新密码",
   selected: "已选择",
@@ -297,7 +298,7 @@ export const lang = {
     typingMessage: "在这里输入消息",
     inputName: "请输入你的昵称",
     completeCreation: "完成创建",
-    inputEmail:'请输入邮箱'
+    inputEmail: '请输入邮箱'
   },
   buttons: {
     emoji: "Emoji",
@@ -400,10 +401,10 @@ export const lang = {
     myJoin: "我加入的",
   },
   profileMenu: {
-    personalInformation: "我的信息",
+    personalInformation: "我的资料",
     addressBookBlacklist: "黑名单",
-    language: "语言",
-    clearChatHistory: "清除聊天记录",
+    language: "语言设置",
+    clearChatHistory: "清空聊天记录",
     accountSetting: "账号设置",
     aboutUs: "关于我们",
     logOut: "退出登录",
@@ -520,7 +521,7 @@ export const lang = {
     createSuccess: "创建成功！",
     uploadFailed: "上传失败！",
     scanGroupQrCodeTip: "扫一扫群二维码，立刻加入该群",
-    scanQrCodeTip: "扫一扫下面的二维码，添加我为好友",
+    scanQrCodeTip: "扫一扫上面的二维码，添加我为好友",
     loginExpiration: "当前登录已过期，请重新登录",
     loginKicked: "您的账号已在其他设备登录，请重新登录",
     sendCard: "确定要发送{name}的名片吗？",
