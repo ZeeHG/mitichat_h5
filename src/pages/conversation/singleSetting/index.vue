@@ -6,7 +6,6 @@
       <div class="flex flex-col mr-3">
         <Avatar :size="44" :src="conversationStore.storeCurrentConversation.faceURL"
           :desc="conversationStore.storeCurrentConversation.showName" @click="toUser" />
-        <span class="w-12 truncate mt-2">{{ conversationStore.storeCurrentConversation.showName }}</span>
       </div>
       <img width="44" :src="create_group" alt="" @click="createGroup" />
     </div>
@@ -14,11 +13,11 @@
     <SettingSearch />
 
     <div class="mt-2 mx-3 rounded-md overflow-hidden">
-      <SettingRowItem :title="$t('chatPin')" show-switch :loading="switchLoading.pinLoading"
-        :checked="conversationStore.storeCurrentConversation.isPinned" @updateValue="updateConversationPinState" />
       <SettingRowItem :title="$t('checks.notDisturb')" show-switch :loading="switchLoading.recvMsgLoading"
         :checked="conversationStore.storeCurrentConversation.recvMsgOpt === MessageReceiveOptType.NotNotify"
         @updateValue="updateConversationRecvMsgState($event, MessageReceiveOptType.NotNotify)" />
+      <SettingRowItem :title="$t('chatPin')" show-switch :loading="switchLoading.pinLoading"
+        :checked="conversationStore.storeCurrentConversation.isPinned" @updateValue="updateConversationPinState" />
     </div>
 
     <div class="mt-2 mx-3 rounded-md overflow-hidden">
@@ -37,7 +36,7 @@
     </div>
 
     <div class="mt-2 mx-3 rounded-md overflow-hidden">
-      <SettingRowItem danger :title="$t('popover.clearModalTitle')" @click-item="clearLogs" />
+      <SettingRowItem  :title="$t('popover.clearModalTitle')" @click-item="clearLogs" />
     </div>
 
     <van-action-sheet v-model:show="show" :onSelect="onSelect" :actions="durationOptions"

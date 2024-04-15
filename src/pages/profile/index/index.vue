@@ -1,7 +1,10 @@
 <template>
   <div class="page_container">
-     <img :src="bg" mode=""/>
-    <view class="w-[90%] h-[98px] rounded-md bg-transparent flex items-center pl-4 pr-2 mx-auto mt-[-60px]">
+  <div class="min-h-[220px] flex items-center justify-center">
+      <div
+        :style="{ backgroundImage: 'url(' + bg + ')' }" class="bg-cover bg-bottom z-10 absolute w-full h-[280px] pointer-events-none">
+      </div>
+      <view class="w-[90%] h-[98px] rounded-md bg-transparent flex items-center justify-center pl-4 pr-2 mx-auto my-auto">
       <Avatar :size="46" :src="userStore.storeSelfInfo.faceURL" :desc="userStore.storeSelfInfo.nickname" />
 
       <view class="id_row flex justify-between items-start h-[46px] flex-col flex-1 ml-2">
@@ -17,7 +20,9 @@
         <img class="w-[24px] h-[24px]" :src="back" alt="" />
       </view>
     </view>
- 
+    </div>
+
+   
     <!-- 外层 div 设置背景颜色 -->
  <div class="w-[90%] mx-auto mt-[10px] bg-#F7F8FA rounded-md py-4">
   <div v-for="(menu, idx) in profileMenus" :key="idx" class="bg-white mb-4 rounded-md"

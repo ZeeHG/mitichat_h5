@@ -9,9 +9,9 @@
     <div class="mt-10" v-show="!searching">
       <div class="text-center text-sub-text text-sm mb-5">{{ $t('findingChatHistory') }}</div>
       <div class="flex justify-between px-[15vw] text-primary text-sm">
-        <span @click="toFile">{{ $t('documnet') }}</span>
         <span @click="toMedia(false)">{{ $t('picture') }}</span>
-        <span @click="toMedia(true)">{{ $t('video') }}</span>
+        <span @click="toMedia(true)">{{ $t('video') }}</span> 
+        <span @click="toFile">{{ $t('documnet') }}</span>
       </div>
     </div>
     <div class="mt-20 flex justify-center items-center flex-col"

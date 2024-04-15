@@ -4,18 +4,18 @@
 
     <div class="mt-2  rounded-md overflow-hidden">
       <DetailInfoItem :lable="$t('profileMenu.disturbMode')">
-        <van-switch size="20" :loading="switchLoading.globalRecvMsgOpt" v-model="globalRecvMsgOpt"
+        <van-switch size="20" :loading="switchLoading.globalRecvMsgOpt" v-model="globalRecvMsgOpt" active-color="#07C160 "
           @change="(e: any) => businessSettingsUpdate(e, 'globalRecvMsgOpt')" />
       </DetailInfoItem>
       <DetailInfoItem :lable="$t('profileMenu.newMessageSound')">
-        <van-switch size="20" :loading="switchLoading.allowBeep" v-model="allowBeep"
+        <van-switch size="20" :loading="switchLoading.allowBeep" v-model="allowBeep" active-color="#07C160 "
           @change="(e: any) => businessSettingsUpdate(e, 'allowBeep')" />
       </DetailInfoItem>
     </div>
 
     <div class="mt-2 rounded-md overflow-hidden">
       <DetailInfoItem :lable="$t('profileMenu.disallowAddMe')">
-        <van-switch size="20" :loading="switchLoading.allowAddFriend" v-model="allowAddFriend"
+        <van-switch size="20" :loading="switchLoading.allowAddFriend" v-model="allowAddFriend" active-color="#07C160 "
           @change="(e: any) => businessSettingsUpdate(e, 'allowAddFriend')" />
       </DetailInfoItem>
       <DetailInfoItem arrow :lable="$t('profileMenu.blacklist')" @click="$router.push('blackList')" />

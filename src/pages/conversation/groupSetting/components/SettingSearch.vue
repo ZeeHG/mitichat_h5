@@ -1,11 +1,10 @@
 <template>
-  <div class="bg-white mt-2 mx-3 rounded-md overflow-hidden">
-    <div class=" text-sm text-sub-text ml-4 mt-4">{{ $t('chatRecord') }}</div>
-    <div class="flex justify-between mt-2 mb-4 mx-5">
-      <div class="flex flex-col items-center" v-for="action in searchRowActions" :key="action.type"
-        @click="clickAction(action.type)">
-        <img width="24" :src="action.icon" alt="">
-        <span class="mt-2 text-xs text-[#666]">{{ action.text }}</span>
+  <div class="mt-2 mx-3 rounded-md overflow-hidden bg-white"
+  :class="{ 'border-b border-[rgba(153,153,153,0.3)] last:border-0': border }">
+    <div class="flex justify-between items-center"
+      @click="clickAction">
+      <div class="flex justify-between items-center px-4 py-3 bg-white"> 
+      {{ $t('chatRecord') }}
       </div>
     </div>
   </div>
@@ -50,25 +49,8 @@ const searchRowActions = [
   },
 ]
 
-const clickAction = (type: SearchLocalMessageEnum) => {
-  switch (type) {
-    case SearchLocalMessageEnum.Nomal:
-      router.push('searchMessage')
-      break;
-    case SearchLocalMessageEnum.Image:
-    case SearchLocalMessageEnum.Video:
-      router.push({
-        path: 'searchMediaMessage',
-        query: {
-          isVideo: (type === SearchLocalMessageEnum.Video) + ''
-        }
-      })
-      break;
-    case SearchLocalMessageEnum.File:
-      router.push('searchFileMessage')
-      break;
-    default:
-      break;
-  }
+const clickAction=()=>{
+  router.push('searchMessage')
 }
+
 </script>

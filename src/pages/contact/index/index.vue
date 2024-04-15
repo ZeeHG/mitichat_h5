@@ -2,7 +2,7 @@
   <div class="page_container">
     <div class="relative">
       <div
-        class="bg-[url('@/assets/images/conversation/header_bg.png')] bg-cover bg-bottom z-10 absolute w-full h-[183px] pointer-events-none" />
+        class="('@/assets/images/conversation/header_bg.png')] bg-cover bg-bottom z-10 absolute w-full h-[183px] pointer-events-none" />
       <ConversationHeader :tabIndex="1"/>
       <ContactMenuList />
       <!-- <ContactFrequentList /> -->

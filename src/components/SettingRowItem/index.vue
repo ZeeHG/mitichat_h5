@@ -4,7 +4,7 @@
     <div :class="{ 'text-error-text': danger }">{{ title }}</div>
     <div class="flex justify-between items-center">
       <van-switch v-if="showSwitch" size="20" :loading="loading" :model-value="checked"
-        @update:model-value="onUpdateValue" />
+        @update:model-value="onUpdateValue" active-color="#07C160 " />
       <div class="flex justify-between items-center text-[#999]" v-else>
         <slot>
           <div>{{ subTitle }}</div>

@@ -1,23 +1,23 @@
 <template>
   <div class="page_container">
     <NavBar :title="$t('profileMenu.personalInformation')" />
-    <div class="mt-2 mx-3 rounded-md overflow-hidden">
+    <div class="mt-2  rounded-md overflow-hidden">
       <DetailInfoItem arrow :lable="$t('avatar')" @click="chooseAvatar">
         <Avatar :size="32" :src="userStore.storeSelfInfo.faceURL" :desc="userStore.storeSelfInfo.nickname" />
       </DetailInfoItem>
-      </div>
+    </div>
 
-      <div class="mt-2 mx-3 rounded-md overflow-hidden">
+      <div class="mt-2 rounded-md overflow-hidden">
         <DetailInfoItem :lable="$t('cellphone')" :content="userStore.storeSelfInfo.phoneNumber" />
         <DetailInfoItem :lable="$t('email')" :content="userStore.storeSelfInfo.email" />
       </div>
 
-      <div class="mt-2 mx-3 rounded-md overflow-hidden">
+      <div class="mt-2 rounded-md overflow-hidden">
         <DetailInfoItem arrow :lable="$t('name')" :content="userStore.storeSelfInfo.nickname"
          @click="$router.push('changeNameOrRemark')" />
         <DetailInfoItem arrow :lable="$t('gender')" :content="comptGenderStr" @click="showGenderPicker = true" />
         <DetailInfoItem arrow :lable="$t('birthday')" :content="comptBirthStr" @click="showBirthPicker = true" />
-    </div>
+      </div>
 
       
     <van-uploader v-show="false" ref="uploaderRef" accept="image/*" capture="camcorder" :preview-image="false"

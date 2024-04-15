@@ -2,7 +2,7 @@
   <div class="page_container">
     <NavBar :title="$t('profileMenu.language')" />
 
-    <div class="m-[10px] overflow-hidden rounded-md">
+    <div class="my-[10px] overflow-hidden rounded-md">
       <div v-for="(item, i) in language" @click="clickItem(item.value)"
         class="flex justify-between items-center px-4 py-3 bg-white" :class="{ 'border-t': i > 0 }">
         <div>{{ item.label }}</div>
