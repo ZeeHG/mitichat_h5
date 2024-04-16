@@ -1,6 +1,8 @@
 <template>
   <div class="page_container">
     <NavBar :title="$t('popover.groupAnnouncement')">
+      <Avatar :size="23" :src="rollback"  @click="goRollback" />
+      <Avatar :size="23" :src="forward"   @click="goForward" />
       <span v-if="!editing && !isNomal" @click="editing = true">{{ $t('buttons.edit') }}</span>
       <span v-if="editing" @click="finishEdit">{{ $t('buttons.release') }}</span>
     </NavBar>
@@ -31,6 +33,8 @@ import { feedbackToast } from '@/utils/common';
 import useConversationStore from '@/store/modules/conversation';
 import { GroupMemberItem } from '@/utils/open-im-sdk-wasm/types/entity';
 import dayjs from 'dayjs';
+import rollback from '@assets/images/rollback.png'
+import forward from '@assets/images/forward.png'
 
 defineProps<{ isNomal: boolean }>();
 
@@ -49,6 +53,8 @@ const pusherTimeStr = computed(() => {
   return ''
 })
 
+const goRollback=()=>{}
+const goForward=()=>{}
 const finishEdit = () => {
   loading.value = true
   IMSDK.setGroupInfo({

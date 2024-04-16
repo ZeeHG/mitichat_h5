@@ -2,24 +2,30 @@
   <div class="page_container">
     <NavBar :title="$t('groupManage')" />
 
-    <div v-if="isOwner" class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
+    <!-- <div v-if="isOwner" class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
       <SettingRowItem :title="$t('allMute')" show-switch :loading="switchLoading.mute"
         :checked="conversationStore.storeCurrentGroupInfo.status === GroupStatus.Muted" @updateValue="updateMute" />
-    </div>
+    </div> -->
 
     <div class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
-      <SettingRowItem :title="$t('notAllowLookMemberInfo')" show-switch :loading="switchLoading.look"
+      <!-- <SettingRowItem :title="$t('notAllowLookMemberInfo')" show-switch :loading="switchLoading.look"
         :checked="conversationStore.storeCurrentGroupInfo.lookMemberInfo === AllowType.NotAllowed"
         @updateValue="updateLookAuthority" />
       <SettingRowItem :title="$t('notAllowApplyMember')" show-switch :loading="switchLoading.friend"
         :checked="conversationStore.storeCurrentGroupInfo.applyMemberFriend === AllowType.NotAllowed"
-        @updateValue="updateFriendAuthority" />
+        @updateValue="updateFriendAuthority" /> -->
       <SettingRowItem :title="$t('groupAccess')" :sub-title="groupAccessStr" @click-item="openGroupAccessSheet" />
     </div>
 
     <div v-if="isOwner" class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
       <SettingRowItem :title="$t('groupTransfer')" @click="groupTransfer" />
     </div>
+
+      <div class="bg-white m-[10px] rounded-md overflow-hidden flex justify-center align-center">
+        <SettingRowItem danger :title="isOwner ? $t('buttons.disbandGroup') : $t('buttons.quitGroup')"
+          @click-item="dismissOrQuit" :arrow="false"/>
+      </div>
+
 
     <van-action-sheet v-model:show="actionSheetVisible" :actions="groupAccessActions" @select="onActionSelect"
       :cancel-text="$t('buttons.cancel')" />
@@ -128,5 +134,25 @@ const groupTransfer = () => {
       action: MemberListActionEnum.Transfer
     }
   })
+}
+const dismissOrQuit = () => {
+  const funName = isOwner ? 'dismissGroup' : "quitGroup"
+  const message = isOwner ? t('messageTip.disbandGroup') : t('messageTip.quitGroup')
+
+  showConfirmDialog({
+    message,
+    beforeClose: (action: string) => {
+      return new Promise((resolve) => {
+        if (action !== "confirm") {
+          resolve(true);
+          return;
+        }
+        IMSDK[funName](conversationStore.currentConversation.groupID)
+          .then(() => router.push('/conversation'))
+          .catch((error: unknown) => feedbackToast({ error }))
+          .finally(() => resolve(true));
+      });
+    },
+  });
 }
 </script>

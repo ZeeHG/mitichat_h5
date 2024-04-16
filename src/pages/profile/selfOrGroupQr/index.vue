@@ -2,7 +2,7 @@
   <div class="page_container">
     <NavBar class="shadow-md" :title="title" />
 
-    <div class="mx-6 mt-14 px-9 pt-9 pb-20 shadow-md rounded-md bg-white flex flex-col items-center">
+    <div class=" px-9 pt-9 pb-20 h-full shadow-md rounded-md bg-white flex flex-col items-center">
       <div class="flex items-center w-full">
         <Avatar :src="faceURL" :desc="showName" :is-group="isGroup" :size="48" />
         <div class="ml-4 max-w-[200px] truncate text-[#333]">{{ showName }}</div>

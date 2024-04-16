@@ -48,7 +48,7 @@
 
       <div class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
         <SettingRowItem :title="$t('groupNickname')" :sub-title="conversationStore.storeCurrentMemberInGroup.nickname"
-          @click="toChangeName()" />
+          @click="toChangeName(false)" />
       </div>
 
       <div class="bg-white m-[10px] rounded-md overflow-hidden">
@@ -161,7 +161,8 @@ const toChangeName = (isGroup?: boolean) => {
   router.push({
     path: 'changeName',
     query: {
-      originData: JSON.stringify(isGroup ? conversationStore.storeCurrentGroupInfo : conversationStore.storeCurrentMemberInGroup)
+      originData: JSON.stringify(isGroup ? conversationStore.storeCurrentGroupInfo : conversationStore.storeCurrentMemberInGroup),
+      isGroup
     }
   })
 }

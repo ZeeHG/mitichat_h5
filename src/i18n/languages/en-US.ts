@@ -523,6 +523,8 @@ export const lang = {
     getConversationFailed: "Failed to get conversation information",
     someMessageDeleteFailed: "Some messages failed to delete!",
     inputEmpty: "Content cannot be empty",
+    modifyGroupname: "When the group chat name is changed, othermembers will be notifed within the group",
+    modifyNickname: "Nicknames will only be displayed in the group after they have been changed, and will be visible to all members of the group.",
     createSuccess: "Created successfully!",
     uploadFailed: "Upload failed!",
     scanGroupQrCodeTip: "Scan the QR code to join the group immediately",
