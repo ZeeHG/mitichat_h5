@@ -1,11 +1,14 @@
 <template>
   <div class="mt-2 mx-3 rounded-md overflow-hidden bg-white"
   :class="{ 'border-b border-[rgba(153,153,153,0.3)] last:border-0': border }">
-    <div class="flex justify-between items-center"
+    <div class="flex justify-between items-center px-4 py-3 bg-white "
       @click="clickAction">
-      <div class="flex justify-between items-center px-4 py-3 bg-white"> 
-      {{ $t('chatRecord') }}
-      </div>
+      <div>{{ $t('chatRecord') }}</div>
+       <div class="flex justify-between items-center "> 
+        <div class="flex justify-between items-center text-[#999]">
+         <img class="w-[24px] h-[24px]" :src="back" />
+        </div>
+       </div>
     </div>
   </div>
 </template>
@@ -15,6 +18,7 @@ import text from '@assets/images/setting/text.png'
 import image from '@assets/images/setting/image.png'
 import video from '@assets/images/setting/video.png'
 import file from '@assets/images/setting/file.png'
+import back from '@assets/images/profile/back.png'
 
 const router = useRouter()
 const { t } = useI18n()

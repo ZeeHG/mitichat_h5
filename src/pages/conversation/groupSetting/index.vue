@@ -26,39 +26,42 @@
 
       <GroupMemberRow :member-count="conversationStore.storeCurrentGroupInfo.memberCount" :is-nomal="isNomal" />
 
-      <SettingSearch />
-
       <div class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
+        <SettingRowItem :title="$t('groupName')" @click="toChangeName(true)" />
+        <SettingRowItem :title="$t('groupQrCode')" @click="toGroupQr" />
         <SettingRowItem :title="$t('popover.groupAnnouncement')" @click="toGroupAnnounce" />
         <SettingRowItem v-if="isOwner || isAdmin" :title="$t('groupManage')" @click="toGroupManage" />
       </div>
+
+      <SettingSearch />  
+
+      <div class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
+        <SettingRowItem :title="$t('checks.notDisturb')" show-switch :loading="switchLoading.recvMsgLoading"
+          :checked="conversationStore.storeCurrentConversation.recvMsgOpt === MessageReceiveOptType.NotNotify"
+          @updateValue="updateConversationRecvMsgState($event, MessageReceiveOptType.NotNotify)" />
+        <SettingRowItem :title="$t('groupPin')" show-switch :loading="switchLoading.pinLoading"
+          :checked="conversationStore.storeCurrentConversation.isPinned" @updateValue="updateConversationPinState" />
+          <SettingRowItem :title="$t('chatEncryption')" show-switch 
+          :checked="true" />
+      </div>
+
 
       <div class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
         <SettingRowItem :title="$t('groupNickname')" :sub-title="conversationStore.storeCurrentMemberInGroup.nickname"
           @click="toChangeName()" />
       </div>
 
-      <div class="bg-white mt-[10px] mx-[10px] rounded-md overflow-hidden">
-        <SettingRowItem :title="$t('groupPin')" show-switch :loading="switchLoading.pinLoading"
-          :checked="conversationStore.storeCurrentConversation.isPinned" @updateValue="updateConversationPinState" />
-        <SettingRowItem :title="$t('checks.notDisturb')" show-switch :loading="switchLoading.recvMsgLoading"
-          :checked="conversationStore.storeCurrentConversation.recvMsgOpt === MessageReceiveOptType.NotNotify"
-          @updateValue="updateConversationRecvMsgState($event, MessageReceiveOptType.NotNotify)" />
+      <div class="bg-white m-[10px] rounded-md overflow-hidden">
+        <SettingRowItem :title="$t('popover.clearModalTitle')" @click-item="clearLogs" />
       </div>
 
-      <div class="bg-white m-[10px] rounded-md overflow-hidden">
-        <SettingRowItem :title="$t('messageDestruct')" show-switch :loading="destructLoading"
-          :checked="conversationStore.storeCurrentConversation.isMsgDestruct" @updateValue="updateDestructDuration" />
-        <SettingRowItem :title="$t('messageDestructTime')" v-if="conversationStore.storeCurrentConversation.isMsgDestruct"
-          :subTitle="destructTimeStr" @click="showDestructTime = true" />
-      </div>
-
-      <div class="bg-white m-[10px] rounded-md overflow-hidden">
-        <SettingRowItem danger :title="$t('popover.clearModalTitle')" @click-item="clearLogs" />
+      <div class="bg-white m-[10px] rounded-md overflow-hidden flex justify-center align-center">
         <SettingRowItem danger :title="isOwner ? $t('buttons.disbandGroup') : $t('buttons.quitGroup')"
-          @click-item="dismissOrQuit" />
+          @click-item="dismissOrQuit" :arrow="false"/>
       </div>
+
     </div>
+
 
     <van-uploader v-show="false" ref="uploaderRef" accept="image/*" capture="camcorder" :preview-image="false"
       :multiple="false" :after-read="afterReadFile" />

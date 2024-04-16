@@ -190,6 +190,7 @@ export const lang = {
   noRelevantContent: "No Relevant Content for “{keyword}”",
   chatSetting: "Chat Settings",
   chatPin: "Pin Contact",
+  chatEncryption: "Chat encryption",
   chatPrivate: "Burn After Reading",
   chatPrivateTime: "Time Setting",
   chatPrivateDesc:

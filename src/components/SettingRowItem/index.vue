@@ -9,10 +9,8 @@
         <slot>
           <div>{{ subTitle }}</div>
         </slot>
-
         <img v-if="arrow" class="w-[24px] h-[24px]" :src="back" />
       </div>
-
     </div>
   </div>
 </template>
