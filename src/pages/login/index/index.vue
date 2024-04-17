@@ -76,6 +76,19 @@
       </div>
     </van-form>
 
+
+    <div class="bg-red w-1/2w-[90px] mx-auto mt-[129px] h-4">
+       <van-radio name="1">
+        <span class="text-base">
+          {{ textBeforeAgreements }}
+        <span class="highlight" @click="toAgreements(true)">{{ UserAgreement }}</span>
+          {{ textBetweenAgreements }}
+        <span class="highlight" @click="toAgreements(false)">{{ privacyAgreement }}</span>
+          {{ textAfterAgreements }}
+        </span>
+       </van-radio>
+    </div>
+
     <van-popup v-model:show="showAreaCode" round position="bottom">
       <van-picker :columns="countryCodeList" @cancel="showAreaCode = false" @confirm="onConfirmAreaCode"
         :columns-field-names="{ text: 'phone_code', value: 'phone_code', children: 'children' }">
@@ -107,15 +120,42 @@ import Config from './Config.vue'
 
 const version = process.env.VERSION
 
-const { t } = useI18n()
+const { t,locale } = useI18n()
 const router = useRouter();
 const show = ref(false)
 const showActions = ref(false)
 const isRegiste = ref(false)
 const actions = ref<{ idx: number, name: string }[]>([]);
 const countryCodeInput = ref('');
+const agreementText = ref(t('messageTip.haveReadAgreements'));
 
-const countryCodeList: any = computed(() => countryCode.filter((item: any) => item.phone_code.includes(countryCodeInput.value)));
+const countryCodeList: any = computed(() => 
+  countryCode.filter((item: any) => 
+    item.phone_code.includes(countryCodeInput.value)
+));
+
+const UserAgreement = computed(() => 
+  locale.value === 'en' ? t('userAgreement') : '用户协议'
+);
+const privacyAgreement = computed(() => 
+  locale.value === 'en' ? t('privacyAgreement') : '隐私协议'
+);
+
+// 根据当前语言分割文本
+const splitText = (text, firstText, secondText) => {
+  const parts = text.split(firstText);
+  const textBeforeAgreements = parts[0];
+  const remaining = parts[1].split(secondText);
+  const textBetweenAgreements = remaining[0];
+  const textAfterAgreements = remaining[1];
+
+  return { textBeforeAgreements, textBetweenAgreements, textAfterAgreements };
+};
+
+const { textBeforeAgreements, 
+        textBetweenAgreements, 
+        textAfterAgreements } = 
+        splitText(agreementText.value, UserAgreement.value, privacyAgreement.value);
 
 const formData = reactive({
   phoneNumber: localStorage.getItem("IMAccount") ?? '',
@@ -170,6 +210,14 @@ const reSend = () => {
     .catch(error => feedbackToast({ message: t('messageTip.sendCodeFailed'), error }))
 }
 
+const toAgreements = (isUserAgreement?: boolean) => {
+  router.push({
+    path: 'Agreements',
+    query: {
+      isUserAgreement
+    }
+  })
+}
 const startTimer = () => {
   if (timer) {
     clearInterval(timer)

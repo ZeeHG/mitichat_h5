@@ -33,7 +33,7 @@ const loginRouters: Array<RouteRecordRaw> = [
       try {
         isRegiste = JSON.parse(query.isRegiste as string);
         isByEmail = JSON.parse(query.isByEmail as string);
-      } catch (error) {}
+      } catch (error) { }
       return {
         isRegiste,
         isByEmail,
@@ -73,6 +73,14 @@ const loginRouters: Array<RouteRecordRaw> = [
       };
     },
     component: () => import("@pages/login/setBaseInfo/index.vue"),
+  },
+  {
+    path: "/agreements",
+    name: "Agreements",
+    props: ({ query }) => ({
+      isUserAgreement: query.isUserAgreement,
+    }),
+    component: () => import("@pages/login/agreements/index.vue"),
   },
   // {
   //   path: "/chooseAvatar",

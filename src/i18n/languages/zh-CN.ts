@@ -211,6 +211,8 @@ export const lang = {
   translateFail: "翻译失败",
   chat: "聊天",
   discover: "发现",
+  userAgreement: "用户协议",
+  privacyAgreement: "隐私协议",
   lang: {
     "auto": "自动",
     "English": "英语",
@@ -507,6 +509,7 @@ export const lang = {
     registerFailed: "注册失败",
     loginFailed: "登录失败",
     verifyFailed: "验证失败",
+    haveReadAgreements: "我已阅读并同意用户协议和隐私协议",
     updateSelfInfoFailed: "修改个人信息失败",
     nomalSuccess: "操作成功",
     nomalFailed: "操作失败",

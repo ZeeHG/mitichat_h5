@@ -212,6 +212,8 @@ export const lang = {
   onFlash: "Turn On Flash",
   targetLang: "Translate to",
   translateFail: "Translation Failed",
+  userAgreement: "User Agreement",
+  privacyAgreement: "Privacy Agreement",
   lang: {
     "auto": "Auto",
     "English": "English",
@@ -511,6 +513,7 @@ export const lang = {
     registerFailed: "Registration failed",
     loginFailed: "Login failed",
     verifyFailed: "Verification failed",
+    haveReadAgreements: "I have read and agree to the useragreement and privacyagreement",
     updateSelfInfoFailed: "Failed to update personal information",
     nomalSuccess: "Operation successful",
     nomalFailed: "Operation failed",
