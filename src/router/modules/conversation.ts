@@ -77,6 +77,7 @@ const conversationRouters: Array<RouteRecordRaw> = [
     name: "ChangeName",
     props: ({ query }) => ({
       originData: JSON.parse(query.originData as string),
+      isGroup: query.isGroup,
     }),
     component: () => import("@pages/conversation/changeName/index.vue"),
   },

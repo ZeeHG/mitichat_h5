@@ -32,7 +32,7 @@ import useConversationSettings from "@/hooks/useConversationSettings";
 const { t } = useI18n()
 const router = useRouter();
 const props = defineProps<{ 
-  originData: GroupItem & GroupMemberItem;
+  originData: GroupItem & GroupMemberItem,
   isGroup?: boolean;
   }>()
 
@@ -40,7 +40,14 @@ const name = ref(props.originData.nickname || props.originData.groupName);
 
 const title = props.originData.groupName ? t('changeGroupName') : t('changeGroupNickname')
 
-const tip = props.isGroup ? t("messageTip.modifyGroupname") : t("messageTip.modifyNickname")
+// const tip = props.isGroup ? t("messageTip.modifyGroupname") : t("messageTip.modifyNickname")
+// fixme tip内容通过isgroup的布尔值控制，现在能正确拿到isgroup的值但是这个三元表达式只走isgroup=true的情况
+console.log(props.isGroup);
+const tip = props.isGroup
+  ? (console.log("Groupname logic"), t("messageTip.modifyGroupname"))
+  : (console.log("Nickname logic"), t("messageTip.modifyNickname"));
+
+
 
 const {conversationStore} = useConversationSettings();
 

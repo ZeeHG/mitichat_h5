@@ -1,10 +1,12 @@
 <template>
   <div class="page_container">
-    <NavBar :title="$t('popover.groupAnnouncement')">
+    <NavBar>
+    <div class="flex flex-row justify-evenly">
       <Avatar :size="23" :src="rollback"  @click="goRollback" />
       <Avatar :size="23" :src="forward"   @click="goForward" />
       <span v-if="!editing && !isNomal" @click="editing = true">{{ $t('buttons.edit') }}</span>
       <span v-if="editing" @click="finishEdit">{{ $t('buttons.release') }}</span>
+    </div>
     </NavBar>
     <div class="flex flex-1 flex-col px-[22px] py-3 mx-[10px] mt-[10px] mb-[30px] bg-white rounded-md overflow-hidden">
       <div v-if="!editing && pusherInfo" class="flex flex-row">

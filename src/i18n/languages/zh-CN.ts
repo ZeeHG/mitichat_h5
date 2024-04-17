@@ -521,7 +521,7 @@ export const lang = {
     inputEmpty: "内容不能为空",
     createSuccess: "创建成功！",
     uploadFailed: "上传失败！",
-    scanGroupQrCodeTip: "扫一扫群二维码，立刻加入该群",
+    scanGroupQrCodeTip: "该二维码7天内有效，重新进入将更新",
     scanQrCodeTip: "扫一扫上面的二维码，添加我为好友",
     modifyGroupname: "修改群聊名称后，将在群内通知其他成员。",
     modifyNickname: "昵称在修改后，只会在群内显示，群内成员都可以看见。",

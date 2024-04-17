@@ -319,7 +319,7 @@ onUnmounted(() => {
 .box:after,
 .angle:after {
   right: 0;
-  border-right-color: #00ff33;
+  border--color: #00ff33;
 }
 
 @keyframes radar-beam {
