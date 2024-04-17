@@ -78,7 +78,7 @@ const loginRouters: Array<RouteRecordRaw> = [
     path: "/agreements",
     name: "Agreements",
     props: ({ query }) => ({
-      isUserAgreement: query.isUserAgreement,
+      isUserAgreement: query.isUserAgreement === "true",
     }),
     component: () => import("@pages/login/agreements/index.vue"),
   },

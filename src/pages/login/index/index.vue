@@ -210,7 +210,7 @@ const reSend = () => {
     .catch(error => feedbackToast({ message: t('messageTip.sendCodeFailed'), error }))
 }
 
-const toAgreements = (isUserAgreement?: boolean) => {
+const toAgreements = (isUserAgreement: boolean) => {
   router.push({
     path: 'Agreements',
     query: {

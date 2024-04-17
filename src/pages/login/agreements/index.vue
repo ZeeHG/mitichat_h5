@@ -2,7 +2,8 @@
   <div class="page_container">
     <NavBar :title="title"/>
     <div class="px-9 pt-9 pb-9 bg-white flex flex-col items-center h-full">
-     
+     <p v-if="isUserAgreement">用户协议</p>
+     <p v-else>隐私协议</P>
     </div>
   </div>
 </template>
