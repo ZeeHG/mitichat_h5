@@ -1,7 +1,7 @@
 <template>
   <div class="page_container">
     <NavBar :title="title"/>
-    <div class="px-9 pt-9 pb-9 bg-white flex flex-col items-center h-full">
+    <div class="px-8 pt-9 pb-9 bg-white flex flex-col items-center h-full">
       <div class="flex items-center w-full">
         <div class="ml-4  text-[#333]">
         <div class="mt-12 mb-8">{{ tip }}</div>
@@ -40,12 +40,7 @@ const name = ref(props.originData.nickname || props.originData.groupName);
 
 const title = props.originData.groupName ? t('changeGroupName') : t('changeGroupNickname')
 
-// const tip = props.isGroup ? t("messageTip.modifyGroupname") : t("messageTip.modifyNickname")
-// fixme tip内容通过isgroup的布尔值控制，现在能正确拿到isgroup的值但是这个三元表达式只走isgroup=true的情况
-console.log(props.isGroup);
-const tip = props.isGroup
-  ? (console.log("Groupname logic"), t("messageTip.modifyGroupname"))
-  : (console.log("Nickname logic"), t("messageTip.modifyNickname"));
+const tip = props.isGroup? t("messageTip.modifyGroupname"):  t("messageTip.modifyNickname");
 
 
 
