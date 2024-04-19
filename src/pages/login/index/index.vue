@@ -78,7 +78,7 @@
 
 
     <div class="bg-red w-1/2w-[90px] mx-auto mt-[129px] h-4">
-       <van-radio name="1">
+       <van-radio v-model="agree" name="1">
         <span class="text-base">
           {{ textBeforeAgreements }}
         <span class="highlight" @click="toAgreements(true)">{{ UserAgreement }}</span>
@@ -127,6 +127,7 @@ const showActions = ref(false)
 const isRegiste = ref(false)
 const actions = ref<{ idx: number, name: string }[]>([]);
 const countryCodeInput = ref('');
+const agree = ref(false)
 const agreementText = ref(t('messageTip.haveReadAgreements'));
 
 const countryCodeList: any = computed(() => 
@@ -173,6 +174,7 @@ const count = ref(0)
 let timer: NodeJS.Timer
 
 const onSubmit = async () => {
+  if (!agree.value) return Toast('请勾选我已同意')
   loading.value = true
   localStorage.setItem("IMAccount", formData.phoneNumber)
   try {
