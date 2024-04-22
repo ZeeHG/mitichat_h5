@@ -514,7 +514,7 @@ export const lang = {
     loginFailed: "Login failed",
     verifyFailed: "Verification failed",
     haveReadAgreements: "I have read and agree to the useragreement and privacyagreement",
-    agreewithAgreements: 'Please check that I have agreed',
+    agreewithAgreements: 'Please agree to the user agreement and privacy agreement first',
     updateSelfInfoFailed: "Failed to update personal information",
     nomalSuccess: "Operation successful",
     nomalFailed: "Operation failed",

@@ -510,7 +510,7 @@ export const lang = {
     loginFailed: "登录失败",
     verifyFailed: "验证失败",
     haveReadAgreements: "我已阅读并同意用户协议和隐私协议",
-    agreewithAgreements: "请勾选我已同意",
+    agreewithAgreements: "请先同意用户协议和隐私协议",
     updateSelfInfoFailed: "修改个人信息失败",
     nomalSuccess: "操作成功",
     nomalFailed: "操作失败",
