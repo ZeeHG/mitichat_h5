@@ -110,7 +110,8 @@
 
 <script setup lang='ts'>
 import md5 from 'md5';
-import type { PickerConfirmEventParams, } from 'vant';
+import { showToast } from "vant";
+import type { PickerConfirmEventParams} from 'vant';
 import { login, sendSms } from '@/api/login';
 import countryCode from '@/utils/areaCode'
 import { feedbackToast } from '@/utils/common';
@@ -174,7 +175,7 @@ const count = ref(0)
 let timer: NodeJS.Timer
 
 const onSubmit = async () => {
-  if (!agree.value) return Toast('请勾选我已同意')
+  if (!agree.value) return showToast(t('messageTip.agreewithAgreements'))
   loading.value = true
   localStorage.setItem("IMAccount", formData.phoneNumber)
   try {
