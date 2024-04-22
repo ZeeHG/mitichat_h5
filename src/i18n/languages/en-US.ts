@@ -673,6 +673,239 @@ export const lang = {
   userAgreementEnd: {
     context: "Effective from January 3, 2024",
   },
+  privacyAgreementText: {
+    "privacyPolicy1": "Effective Date: December 31, 2023",
+    "privacyPolicy2": "Privacy Policy Notice",
+    "privacyPolicy3":
+      "Dear users of Miti (hereinafter referred to as \"the Platform\"), Cat Pi Software INC., with its registered address at 874 Walker Road, Suite C, Dover, Delaware, United States, and its affiliates, as operators of the Platform, acknowledge the importance of your personal information. We are committed to protecting your personal information and privacy in accordance with legal and regulatory requirements.",
+    "privacyPolicy4":
+      "When you use the Platform, we will collect, use, store, share, transfer, disclose, and protect your personal information as per this Privacy Policy. We are dedicated to maintaining your trust in us, adhering to principles such as the Consistency of Rights and Responsibilities, Clear Purpose, Consent Choice, Minimum Sufficiency, Security Assurance, Participant Involvement, and Transparency. We promise to adopt mature industry-standard security measures to protect your personal information.",
+    "privacyPolicy5":
+      "Before officially using the services through the Platform, please read this Privacy Policy carefully. If you have any questions during the reading process, feel free to contact us (email: support@miti.chat).",
+    "privacyPolicy6":
+      "By clicking the \"I have read and agree\" button, you indicate your acceptance and agreement to the terms of this Privacy Policy. You also consent to our collection, use, storage, sharing, transferring, disclosing, and protecting your personal information as specified in this Privacy Policy. If you do not agree with any terms of this Privacy Policy, you should immediately cease accessing and using the Platform.",
+    "privacyPolicy7":
+      "We will collect and use your information in accordance with this Privacy Policy, but we will not collect personal information in a bundled manner solely because you consent to this Privacy Policy. When you use or activate certain features or services, we will collect and use relevant information as necessary to realize the listed functions and services. Except for information necessary for business functions or as required by laws and regulations, you may refuse to provide it.",
+    "privacyPolicy8":
+      "Permissions in the mobile device are not enabled by default and will only be used for specific functions or services after your explicit authorization. You may also withdraw your authorization. It is important to note that even with your authorization, if we obtain sensitive permissions, we will not collect your information when it is not necessary for the related functions or services.",
+    "privacyPolicy9":
+      "This Privacy Policy will help you understand the following aspects:",
+    "privacyPolicy10": "Information We Collect",
+    "privacyPolicy11": "How We Use Information",
+    "privacyPolicy12": "How We Share Information",
+    "privacyPolicy13": "Third-Party Content and Integrations",
+    "privacyPolicy14": "How Long We Retain Your Information",
+    "privacyPolicy15": "Controlling Your Information",
+    "privacyPolicy16": "International Data Transfers",
+    "privacyPolicy17": "State and Regional Specific Information",
+    "privacyPolicy18": "Our Audience",
+    "privacyPolicy19": "Updates to the Privacy Policy",
+    "privacyPolicy20": "How to Contact Us",
+    "privacyPolicy21": "Information We Collect",
+    "privacyPolicy22": "We collect information in three basic categories:",
+    "privacyPolicy23": "• Information you provide;",
+    "privacyPolicy24": "• Information we obtain when you use our services;",
+    "privacyPolicy25": "• Information we receive from third parties.",
+    "privacyPolicy26":
+      "More detailed information about each category is as follows:",
+    "privacyPolicy27": "Information You Provide",
+    "privacyPolicy28":
+      "When you interact with our services, we collect information you provide to us. For example, many of our services require you to set up an account, so we need to collect some important details about you, such as your username, password, email address, phone number, gender, and date of birth. We may also ask you to provide additional information that will be publicly visible in our services, such as a personal avatar.",
+    "privacyPolicy29":
+      "Of course, you will also provide us with any information you send through our services, such as conversations with digital entities like My Miti, dynamic images, videos, etc. Remember, users who view your dynamics, chats, and any other content can always save that content or copy it outside the app. Therefore, the common sense applicable to the entire internet also applies to our services: do not send messages or share content that you do not want others to save or share.",
+    "privacyPolicy30":
+      "When you contact support or communicate with us in any other way, we will collect any information you voluntarily provide or that is necessary to resolve your issue.",
+    "privacyPolicy31": "Information We Obtain When You Use Our Services",
+    "privacyPolicy32":
+      "When you use our services, we collect information about which services you have used and how you have used them. For example, we may know that you have enabled auto-translation services in a conversation, shared a location, sent a business card or file, etc. Here is a more complete explanation of the types of information we collect when you use our services:",
+    "privacyPolicy33":
+      "Usage Information. We collect information about your activity through our services. For example, we may collect information about:",
+    "privacyPolicy34":
+      "• How you interact with our services, such as your interactions with digital entities like My Miti, or the search queries you submit.",
+    "privacyPolicy35":
+      "• How you communicate with other Miti users, such as their names, the time and date of your communication, the number of messages you chat with friends, with whom you chat the most, and your interactions with the messages (e.g., when you open a message or when we detect you've captured a screenshot).",
+    "privacyPolicy36":
+      "Content Information. When you use our services, you can create and share various types of content, such as articles, daily dynamics, etc., using tools like cameras. We collect information about the content you create or provide in our services and your use of tools like cameras. We may also collect other information about the content, including metadata - information about the content itself, such as the date and time it was posted and the viewers.",
+    "privacyPolicy37":
+      "Device Information. We collect information about the device you use from your device. For example, we may collect:",
+    "privacyPolicy38":
+      "• Information about your hardware and software, such as hardware model, operating system version, device memory, advertising identifiers, unique application identifiers, installed applications, unique device identifiers, device usage data, browser type, installed keyboards, language, battery level, and time zone;",
+    "privacyPolicy39":
+      "• Information from device sensors, such as accelerometers, gyroscopes, compasses, microphones, and whether you have connected headphones;",
+    "privacyPolicy40":
+      "• Information about your wireless and mobile network connections, such as phone number, service provider, IP address, and signal strength.",
+    "privacyPolicy41":
+      "Camera, Photos, and Audio. Many of our services require us to collect images and other information from your device's camera, photos, and microphone. Unless we can access your camera or photo album, you will not be able to send dynamics or upload photos from your album",
+    "privacyPolicy42":
+      "Location Information. When you use our services, we may collect information about your location. With your permission, we may also collect information about your precise location through methods such as GPS signals.",
+    "privacyPolicy43":
+      "Information Collected Through Cookies and Other Technologies. Like most online services and mobile applications, we may use cookies and other technologies (such as web beacons, web storage, and unique advertising identifiers) to collect information about your activity, browser, and device. We may also use these technologies to collect information when you interact with services we offer through our partners, such as advertising and commercial features. For example, we may use information collected on other websites to show you more relevant ads. Most web browsers are set to accept cookies by default. If you wish, you can usually delete or reject browser cookies through the settings on your browser or device. But remember, deleting or rejecting cookies may affect the availability and functionality of our services.",
+    "privacyPolicy44":
+      "Log Information. When you use our website, we may also collect log information, such as:",
+    "privacyPolicy45": "• Detailed information about how you use our services;",
+    "privacyPolicy46":
+      "• Device information, such as your network browser type and language;",
+    "privacyPolicy47": "• Access times;",
+    "privacyPolicy48": "• Pages browsed;",
+    "privacyPolicy49": "• IP address;",
+    "privacyPolicy50":
+      "• Identifiers associated with cookies or other technologies that can uniquely identify your device or browser;",
+    "privacyPolicy51":
+      "• Pages you visited before or after navigating to our website.",
+    "privacyPolicy52":
+      "Other Information with Your Permission. In some cases, when you interact with our services, we may ask your permission to collect other information.",
+    "privacyPolicy53": "Information We Collect from Third Parties",
+    "privacyPolicy54":
+      "We may collect information about you from other users and third parties. Here are some examples:",
+    "privacyPolicy55":
+      "• If you link your Miti account to other services, we may receive information about how you use that service.",
+    "privacyPolicy56":
+      "• We may receive information from advertisers, application developers, publishers, and other third parties. We may use this information to help target or measure the effectiveness of ads.",
+    "privacyPolicy57":
+      "• If you provide us with your contact information, we may use that information, along with information obtained from third parties, to determine whether we can communicate with you on other messaging platforms.",
+    "privacyPolicy58":
+      "• We may receive information about people who potentially violate our service terms and community guidelines from third parties, including website publishers, social network providers, law enforcement, and others.",
+    "privacyPolicy59": "How We Use Information",
+    "privacyPolicy60": "We use the information in the following ways:",
+    "privacyPolicy61":
+      "• To develop, operate, improve, deliver, maintain, and protect our products and services.",
+    "privacyPolicy62":
+      "• To provide, personalize, and improve our advertising services, ad targeting, and ad measurement, including using your content and precise location information (likewise, if you allow us to collect precise location information), whether within our services or outside. For this, we may also store information about your use of third-party applications and websites on your device.",
+    "privacyPolicy63":
+      "• To add background information to your Miti experience, for example, based on your location (of course, if you allow us to collect your precise location) and your photo or video content.",
+    "privacyPolicy64":
+      "• To develop and improve our digital entities and prevent abuse or other violations of our service terms.",
+    "privacyPolicy65":
+      "• To conduct research to better understand the interests and trends of Miti users, including how our services are used.",
+    "privacyPolicy66":
+      "• To use the information you provide to communicate with you on other messaging platforms.",
+    "privacyPolicy67": "• To enhance the security of our products and services.",
+    "privacyPolicy68":
+      "• To verify your identity and prevent fraud or other unauthorized or illegal activities.",
+    "privacyPolicy69":
+      "• To use information we collect from cookies and other technologies to enhance our services and your user experience.",
+    "privacyPolicy70":
+      "• To enforce, investigate, and report violations of our service terms and other usage policies, respond to law enforcement requests, and comply with legal requirements.",
+    "privacyPolicy71":
+      "• To send you communications, where permitted, including through email, text messages, or other messaging platforms.",
+    "privacyPolicy72": "• To monitor and analyze trends and usage.",
+    "privacyPolicy73": "How We Share Information",
+    "privacyPolicy74":
+      "Why do we share the information we collect? Most of the time, it's because you've asked us to. Sometimes we share it because we need to. We may share your information in the following ways:",
+    "privacyPolicy75":
+      "Sharing Information with Other Miti Users. We may share the following information with other Miti users:",
+    "privacyPolicy76":
+      "• Information about you, such as your username, name, and avatar",
+    "privacyPolicy77":
+      "• Information about how you interact with our services and the content you engage with, such as your Miti \"points,\" the names of Miti users or AI digital entities you've befriended, the closeness of your interactions with friends on Miti, your recent location history (if you choose to share your precise location on Miti), and other information that helps Miti users understand your connections with other people using our services. For example, to clarify if a new friend request comes from someone you actually know, we may share information about whether you and the requester have mutual Miti friends or are in the same area.",
+    "privacyPolicy78":
+      "• Information about your device, such as the operating system and device type, to format.",
+    "privacyPolicy79":
+      "• Any other information you instruct us to share. For instance, when you connect your Miti account to a third-party app, and when you share information or content from Miti to a third-party app, Miti will share your information",
+    "privacyPolicy80":
+      "• Content you post or send. The sharing range of your content depends on your personal settings and the type of service you use. For example, dynamics might be sent to a single friend you choose, but your posts might be seen by any Miti user business partners and the public:",
+    "privacyPolicy81":
+      "• Sharing Information with All Miti Users, Our Business Partners, and the Public. We may share the following information with all Miti users as well as our business partners and the public:",
+    "privacyPolicy82":
+      "• Public information, such as your name, username, profile picture, and public profile.",
+    "privacyPolicy83":
+      "• Public content, such as dynamics, posts set to be viewable by everyone, and any content you submit to inherently public services (like maps and other crowdsourcing services). The general public can view, use, and share this content both within and outside of our services, including through search results, websites, applications, and both online and offline broadcasts.",
+    "privacyPolicy84":
+      "Sharing Information with Third Parties. We may share information with third parties in the following ways:",
+    "privacyPolicy85":
+      "• We may share your information with service providers who perform services on our behalf, including facilitating payments, measuring and optimizing advertising effectiveness, and delivering more relevant ads (including on third-party websites and apps).",
+    "privacyPolicy86":
+      "• We may share information about you with business partners who provide services and features.",
+    "privacyPolicy87":
+      "• We may share information about you, such as device and usage information, to help us and others prevent fraud.",
+    "privacyPolicy88":
+      "• We may share information about you, such as device and usage information, to help us and others prevent fraud.",
+    "privacyPolicy89":
+      "• For legal, security, and safety reasons, we may share information about you. If we reasonably believe that disclosing information is necessary for the following purposes, we may share your information:",
+    "privacyPolicy90":
+      "• To comply with any valid legal process, government request, or applicable law, rule, or regulation.",
+    "privacyPolicy91":
+      "• To investigate, remedy, or enforce potential violations of service terms and community guidelines.",
+    "privacyPolicy92":
+      "• To protect the rights, property, or safety of us, our users, or others.",
+    "privacyPolicy93": "• To detect and resolve any fraud or security concerns.",
+    "privacyPolicy94":
+      "• As part of a merger or acquisition, we may share your information. If Cat Pi Software INC. is involved in a merger, asset sale, financing, liquidation, or bankruptcy, or if we sell all or part of our business to another company, we may share your information before and after the transaction with that company",
+    "privacyPolicy95":
+      "Non-Personal Information. We may also share aggregated, non-personally identifiable, or de-identified information with third parties who provide services to us or perform business purposes for us.",
+    "privacyPolicy96": "Third-Party Content and Integrations",
+    "privacyPolicy97":
+      "Our services may include third-party content and integrations. Examples include third-party integrations in digital entity models, etc. Through these integrations, you may provide information to third parties. We are not responsible for how these third parties collect or use your information. As always, we encourage you to review the privacy policies of every third-party service you visit or use, including third parties you interact with through our services.",
+    "privacyPolicy98": "How Long We Retain Your Information",
+    "privacyPolicy99":
+      "We will store your basic account information (such as your name, phone number, and email address) and your friends list until you ask us to delete them",
+    "privacyPolicy100":
+      "If you decide to stop using Miti, you can ask us to delete your account. After a period of inactivity, we will also delete most of the information we have collected about you.",
+    "privacyPolicy101":
+      "Please remember, while our systems are designed to carry out deletion operations automatically, we cannot guarantee that deletion will occur within a specific timeframe. There might be legal requirements to store your data, and if we receive a valid legal process requiring us to preserve content, or if we receive reports of abuse or other violations of service terms, or if your account, content you created, or content created by other users is flagged for abuse or other service term violations, we may need to suspend the practice of deleting this data. Finally, we may also retain backups of certain information for a limited time or as required by law.",
+    "privacyPolicy102": "Controlling Your Information",
+    "privacyPolicy103":
+      "We want you to be in control of your information, so we provide you with the following tools:",
+    "privacyPolicy104":
+      "• Access, Correction, and Portability. You can access and edit most of your basic account information directly within our app. You can also use the \"Download My Data\" feature to obtain a copy of information not available in our app in a portable format so that you can move it or store it wherever you want. Since your privacy is important to us, we may ask you to verify your identity or provide additional information before allowing you to access or update your personal information. We may also refuse your request to access or update your personal information for various reasons, such as if the request would jeopardize the privacy of other users or is unlawful.",
+    "privacyPolicy105":
+      "• Revoking Permissions. In most cases, if you've allowed us to use your information, you can simply revoke your permission by changing the settings on the app or device (if your device provides these options). Of course, doing so might cause some services to lose full functionality. For promotional emails and messages sent via SMS or other messaging platforms, you can opt-out by clicking the unsubscribe link or using a similar mechanism provided.",
+    "privacyPolicy106":
+      "• Deletion. Although we hope you'll always be a Miti user, if for some reason you want to delete your account, please go here to learn how to do it. You can also delete some information in the app, such as conversations with My Miti and search history.",
+    "privacyPolicy107":
+      "• Communication with Other Miti Users. For us, it's important that you can control who you communicate with. That's why we've built many tools in the \"Settings\" so that you can specify who you want to see your dynamics, whether you only want to receive dynamics from your friends, your friends and contacts, or all Miti users, and whether you want to block other Miti users from contacting you again. Go here for more information.",
+    "privacyPolicy108": "International Data Transfers",
+    "privacyPolicy109":
+      "We may collect, transfer, store, and process your personal information in the United States and other countries outside of where you live. Whenever we share information outside of your place of residence, we ensure that appropriate transfer mechanisms are in place when legally required. We also ensure that any third party with whom we share information also has appropriate transfer mechanisms. You can find more information about the categories of third parties with whom we share information here.",
+    "privacyPolicy110": "State and Regional Specific Information",
+    "privacyPolicy111":
+      "You may have specific privacy rights in the state or region where you reside. For example, residents of California and other states in the United States have certain privacy rights. Miti users in the European Economic Area (EEA), the United Kingdom, Brazil, South Korea, and other jurisdictions also have specific rights. We maintain an up-to-date overview of state and regional-specific disclosures here.",
+    "privacyPolicy112": "Our Audience",
+    "privacyPolicy113":
+      "Our services are not intended for (nor do we directly target) anyone under the age of 13. That's why we do not knowingly collect personal information from anyone under the age of 13. Additionally, we may restrict the ways we collect, use, and store some information of users under the age of 18. In some cases, this means that we may not be able to provide certain features to these users.",
+    "privacyPolicy114": "Updates to the Privacy Policy",
+    "privacyPolicy115":
+      "We may change this Privacy Policy from time to time. But when we do, we will notify you in some way. Sometimes, we notify you by updating the date at the top of the Privacy Policy available on our website and mobile application. Other times, we may provide additional notice (such as adding a statement to our website's homepage or providing an in-app notification)",
+    "privacyPolicy116": "How to Contact Us",
+    "privacyPolicy117":
+      "If you have any questions, comments, or suggestions about this Privacy Policy, or to make complaints and appeals, contact us in the following way, and we will generally reply within 15 working days:",
+    "privacyPolicy118": "Email: support@miti.chat",
+    "privacyPolicy33_1": "Usage Information.",
+    "privacyPolicy33_2":
+      "We collect information about your activity through our services. For example, we may collect information about:",
+    "privacyPolicy36_1": "Content Information. ",
+    "privacyPolicy36_2":
+      "When you use our services, you can create and share various types of content, such as articles, daily dynamics, etc., using tools like cameras. We collect information about the content you create or provide in our services and your use of tools like cameras. We may also collect other information about the content, including metadata - information about the content itself, such as the date and time it was posted and the viewers.",
+    "privacyPolicy37_1": "Device Information. ",
+    "privacyPolicy37_2":
+      "We collect information about the device you use from your device. For example, we may collect:",
+    "privacyPolicy41_1": "Camera, Photos, and Audio. ",
+    "privacyPolicy41_2":
+      "Many of our services require us to collect images and other information from your device's camera, photos, and microphone. Unless we can access your camera or photo album, you will not be able to send dynamics or upload photos from your album",
+    "privacyPolicy42_1": "Location Information. ",
+    "privacyPolicy42_2":
+      "When you use our services, we may collect information about your location. With your permission, we may also collect information about your precise location through methods such as GPS signals.",
+    "privacyPolicy43_1":
+      "Information Collected Through Cookies and Other Technologies. ",
+    "privacyPolicy43_2":
+      "Like most online services and mobile applications, we may use cookies and other technologies (such as web beacons, web storage, and unique advertising identifiers) to collect information about your activity, browser, and device. We may also use these technologies to collect information when you interact with services we offer through our partners, such as advertising and commercial features. For example, we may use information collected on other websites to show you more relevant ads. Most web browsers are set to accept cookies by default. If you wish, you can usually delete or reject browser cookies through the settings on your browser or device. But remember, deleting or rejecting cookies may affect the availability and functionality of our services.",
+    "privacyPolicy44_1": "Log Information. ",
+    "privacyPolicy44_2":
+      "When you use our website, we may also collect log information, such as:",
+    "privacyPolicy52_1": "Other Information with Your Permission. ",
+    "privacyPolicy52_2":
+      "In some cases, when you interact with our services, we may ask your permission to collect other information.",
+    "privacyPolicy75_1": "Sharing Information with Other Miti Users. ",
+    "privacyPolicy75_2":
+      "We may share the following information with other Miti users:",
+    "privacyPolicy84_1": "Sharing Information with Third Parties. ",
+    "privacyPolicy84_2":
+      "We may share information with third parties in the following ways:",
+    "privacyPolicy95_1": "Non-Personal Information. ",
+    "privacyPolicy95_2":
+      "We may also share aggregated, non-personally identifiable, or de-identified information with third parties who provide services to us or perform business purposes for us.",
+
+  },
   vant: enLocale,
   chat: "Chats"
 };
