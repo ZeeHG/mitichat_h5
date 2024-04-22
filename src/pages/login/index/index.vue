@@ -78,7 +78,7 @@
 
 
     <div class="bg-red w-1/2w-[90px] mx-auto mt-[129px] h-4">
-       <van-radio v-model="agree" name="1">
+       <van-checkbox v-model="agree" name="1">
         <span class="text-base">
           {{ textBeforeAgreements }}
         <span class="highlight" @click="toAgreements(true)">{{ UserAgreement }}</span>
@@ -86,7 +86,7 @@
         <span class="highlight" @click="toAgreements(false)">{{ privacyAgreement }}</span>
           {{ textAfterAgreements }}
         </span>
-       </van-radio>
+       </van-checkbox>
     </div>
 
     <van-popup v-model:show="showAreaCode" round position="bottom">
