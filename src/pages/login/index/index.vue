@@ -71,8 +71,16 @@
           <div class="text-xs text-primary" @click="getCode(false)">
             {{ $t('forgetPasswordTitle') }}
           </div>
-          <div class="text-xs text-primary" @click="getCode(true)">{{ $t('nowRegister') }}</div>
+          <div class="text-xs text-primary" @click="getCode(true)">
+            {{ $t('nowRegister') }}
+          </div>
         </div>
+         <g-signin-button
+              :params="googleSignInParams"
+               @success="signInSuccess"
+               @error="signInError">
+               sign in with Google
+            </g-signin-button>
       </div>
     </van-form>
 
@@ -118,6 +126,7 @@ import { feedbackToast } from '@/utils/common';
 import { setIMProfile } from '@/utils/storage';
 import { UsedFor } from '@/api/data';
 import Config from './Config.vue'
+import GSignInButton from 'vue-google-signin-button'
 
 const version = process.env.VERSION
 
@@ -130,6 +139,7 @@ const actions = ref<{ idx: number, name: string }[]>([]);
 const countryCodeInput = ref('');
 const agree = ref(false)
 const agreementText = ref(t('messageTip.haveReadAgreements'));
+const SignInButton = GSignInButton;
 
 const countryCodeList: any = computed(() => 
   countryCode.filter((item: any) => 
@@ -143,6 +153,23 @@ const privacyAgreement = computed(() =>
   locale.value === 'en' ? t('privacyAgreement') : '隐私协议'
 );
 
+ const googleSignInParams = ref({
+  client_id: 'YOUR_APP_CLIENT_ID.apps.googleusercontent.com',
+  scope: 'profile email',
+  prompt: 'select_account',
+  access_type: 'offline',
+  // login_hint: 'user@example.com', // Optional
+});
+
+    const signInSuccess = (googleUser) => {
+      console.log(googleUser);
+      const profile = googleUser.getBasicProfile();
+      console.log(profile);
+    };
+
+    const signInError = (error) => {
+      console.log('OH NOES', error);
+    };
 // 根据当前语言分割文本
 const splitText = (text, firstText, secondText) => {
   const parts = text.split(firstText);
