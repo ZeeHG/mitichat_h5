@@ -73,3 +73,23 @@ export const businessModify = (params: ChangPasswordParams) => {
     }
   );
 };
+
+export const PostThirdCode = async (idToken: string) => {
+  try {
+    const response = await request.post(
+      "http://10.25.2.24:10008",
+      {
+        idToken: idToken,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.data;
+    // 处理后端返回的数据
+  } catch (error) {
+    // 处理错误情况
+  }
+};
