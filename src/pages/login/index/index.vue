@@ -1,6 +1,10 @@
 <template>
-  <div class=" !bg-white px-10 relative">
-    <img class="w-[90px] mx-auto mt-[99px]" src="@assets/images/logo.png" alt="">
+  <div class="!bg-white px-10 relative">
+    <img
+      class="w-[90px] mx-auto mt-[99px]"
+      src="@assets/images/logo.png"
+      alt=""
+    />
     <!-- <div class=" text-lg font-semibold mx-auto text-primary">{{ $t('welcome') }}</div> -->
 
     <van-form @submit="onSubmit" class="mt-[61px]">
@@ -41,8 +45,14 @@
       <div class="mt-5" v-if="isByPassword">
         <!-- <div class="text-sm mb-1 text-sub-text">{{ $t('password') }}</div> -->
         <div class="border-b border-gap-text rounded-lg">
-          <van-field class="!py-1" clearable v-model="formData.password" name="password" type="password"
-            :placeholder="$t('placeholder.inputPassword')" />
+          <van-field
+            class="!py-1"
+            clearable
+            v-model="formData.password"
+            name="password"
+            type="password"
+            :placeholder="$t('placeholder.inputPassword')"
+          />
         </div>
       </div>
 
@@ -205,9 +215,9 @@ const googleConfig = ref({
 const appleConfig = ref({
   client_id: "chat.miti.service",
   redirect_uri: "https://www.miti.chat/conversation",
-  response_type: "code",
-  scope: "email name", // 请求的范围，通常是用户的邮箱和名字
-  response_mode: "form_post",
+  response_type: "code id_token",
+  scope: " ",
+  response_mode: "fragment",
   state: "YOUR_STATE_VALUE", // 状态值，用于防止CSRF攻击
   nonce: generateNonce(),
 });
@@ -220,51 +230,33 @@ function generateNonce() {
 
 const thirdLogin = async (type: string) => {
   localStorage.setItem("thirdLogin", type);
+  let url;
   switch (type) {
     case "GOOGLE":
-      const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
+      localStorage.setItem("clientId", googleConfig.value.client_id);
+      url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
         googleConfig.value.client_id
       }&redirect_uri=${encodeURIComponent(
         googleConfig.value.redirect_uri
       )}&response_type=${googleConfig.value.response_type}&scope=${
         googleConfig.value.scope
       }&nonce=${googleConfig.value.nonce}`;
-
-      window.open(googleUrl, "_self"); // 跳转谷歌登录
-      GetAndPostThirdCode(type);
       break;
     case "APPLE":
-      const appleUrl = `https://appleid.apple.com/auth/authorize?client_id=${
+      localStorage.setItem("clientId", appleConfig.value.client_id);
+      url = `https://appleid.apple.com/auth/authorize?client_id=${
         appleConfig.value.client_id
       }&redirect_uri=${encodeURIComponent(
         appleConfig.value.redirect_uri
       )}&response_type=${appleConfig.value.response_type}&scope=${
         appleConfig.value.scope
       }&response_mode=${appleConfig.value.response_mode}`;
-      window.open(appleUrl, "_self"); //
-      GetAndPostThirdCode(type);
       break;
     case "FACEBOOK":
       break;
   }
-};
-
-const GetAndPostThirdCode = async (type: string) => {
-  let currentThird = type;
-  // let currentThird = localStorage.getItem("thirdLogin");
-  // let type = null;
-  const { hash } = router.currentRoute.value;
-  if (hash) {
-    let idToken = hash.split("id_token=")[1]?.split("&")[0];
-    localStorage.setItem("GOOGLE_ID_TOKEN", idToken);
-    if (currentThird === "GOOGLE") {
-      type = "GOOGLE";
-      await PostThirdCode(idToken);
-      // localStorage.removeItem("thirdLogin");
-      // } else if (currentThird === "APPLE") {
-      //   localStorage.removeItem("APPLE");
-    } else if (currentThird === "FACEBOOK") {
-    }
+  if (url) {
+    window.location.href = url;
   }
 };
 

@@ -74,22 +74,28 @@ export const businessModify = (params: ChangPasswordParams) => {
   );
 };
 
-export const PostThirdCode = async (idToken: string) => {
-  try {
-    const response = await request.post(
-      "http://10.25.2.24:10008",
-      {
-        idToken: idToken,
+export const PostThirdCode = async (
+  idToken: string,
+  registerType: number,
+  clientId: string
+) => {
+  const response = await request.post(
+    "http://10.25.2.24:10008/account/oauth",
+
+    JSON.stringify({
+      idToken: idToken,
+      clientId: clientId,
+      registerType: registerType,
+      platform: 5,
+      deviceID: "",
+    }),
+
+    {
+      headers: {
+        "Content-Type": "application/json",
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.data;
-    // 处理后端返回的数据
-  } catch (error) {
-    // 处理错误情况
-  }
+    }
+  );
+  const data = await response.data;
+  return data;
 };

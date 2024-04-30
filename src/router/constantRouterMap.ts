@@ -47,7 +47,7 @@ const routes: Array<RouteRecordRaw> = [
         name: "TabbarLayout",
         redirect: "conversation",
         component: TabbarLayout,
-        beforeEnter: loginCheck,
+        // beforeEnter: loginCheck,
         children: [
           {
             path: "/conversation",
@@ -74,7 +74,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/",
         name: "Common",
-        beforeEnter: loginCheck,
+        // beforeEnter: loginCheck,
         children: [
           ...conversationRouters,
           ...contactRouters,
