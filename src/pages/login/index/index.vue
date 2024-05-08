@@ -187,7 +187,6 @@ import { feedbackToast } from "@/utils/common";
 import { setIMProfile } from "@/utils/storage";
 import { UsedFor } from "@/api/data";
 import Config from "./Config.vue";
-import { PostThirdCode } from "@api/login";
 const version = process.env.VERSION;
 
 const { t, locale } = useI18n();
@@ -220,6 +219,25 @@ const appleConfig = ref({
   response_mode: "fragment",
   nonce: generateNonce(),
 });
+const facebookConfig = ref({
+  appId: "1152955699389545",
+  //修改
+  xfbml: true,
+  version: "v19.0",
+  scope: "email,user_likes",
+  return_scopes: true,
+});
+
+// window.fbAsyncInit = function () {
+//   FB.init({
+//     appId: "1152955699389545",
+//     //修改
+//     xfbml: true,
+//     version: "v19.0",
+//     scope: "email,user_likes",
+//     return_scopes: true,
+//   });
+// };
 function generateNonce() {
   return (
     Math.random().toString(36).substring(2, 15) +
@@ -252,6 +270,17 @@ const thirdLogin = async (type: string) => {
       }&response_mode=${appleConfig.value.response_mode}`;
       break;
     case "FACEBOOK":
+      localStorage.setItem("clientId", facebookConfig.value.appId);
+      FB.login(function (response) {
+        // if (response.status === "connected") {
+        //   localStorage.setItem("FACEBOOK_ID_TOKEN", response.accessToken);
+        //   FB.api("/me?fields=id,name,email", function (fb_user) {
+        //     console.log(fb_user);
+        //   });
+        // } else {
+        //   console.log("失败");
+        // }
+      });
       break;
   }
   if (url) {
@@ -395,5 +424,13 @@ const onSelect = (item: { idx: number; name: string }) => {
     rgba(0, 137, 255, 0.1) 0%,
     rgba(255, 255, 255, 0) 100%
   );
+}
+fb-signin-button {
+  /* This is where you control how the button looks. Be creative! */
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: #4267b2;
+  color: #fff;
 }
 </style>

@@ -56,7 +56,6 @@ const GetAndPostThirdCode = async () => {
   if (hash) {
     if (currentThird === "GOOGLE") {
       let idToken = hash.split("id_token=")[1]?.split("&")[0];
-      type = "GOOGLE";
       registerType = 3;
       localStorage.setItem("GOOGLE_ID_TOKEN", idToken);
       const data = await PostThirdCode(idToken, registerType, clientId);
@@ -65,7 +64,6 @@ const GetAndPostThirdCode = async () => {
       localStorage.removeItem("GOOGLE_ID_TOKEN");
     } else if (currentThird === "APPLE") {
       let idToken = hash.split("id_token=")[1]?.split("&")[0];
-      type = "APPLE";
       registerType = 4;
       localStorage.setItem("APPLE_ID_TOKEN", idToken);
       const data = await PostThirdCode(idToken, registerType, clientId);
@@ -73,11 +71,9 @@ const GetAndPostThirdCode = async () => {
       setIMProfile({ chatToken, imToken, userID });
       localStorage.removeItem("APPLE_ID_TOKEN");
     } else if (currentThird === "FACEBOOK") {
-      let idToken = hash.split("id_token=")[1]?.split("&")[0];
-      type = "FACEBOOK";
+      let accessToken = localStorage.getItem("FACEBOOK_ID_TOKEN");
       registerType = 5;
-      localStorage.setItem("FACEBOOK_ID_TOKEN", idToken);
-      const data = await PostThirdCode(idToken, registerType, clientId);
+      const data = await PostThirdCode(accessToken, registerType, clientId);
       const { chatToken, imToken, userID } = data;
       setIMProfile({ chatToken, imToken, userID });
       localStorage.removeItem("FACEBOOK_ID_TOKEN");
@@ -128,6 +124,9 @@ window.userClick = (userID?: string, groupID?: string) => {
 
   contactStore.getUserCardData(userID, groupID);
 };
+defineExpose({
+  GetAndPostThirdCode,
+});
 </script>
 
 <style lang="scss" scoped></style>
