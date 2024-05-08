@@ -73,13 +73,14 @@ const GetAndPostThirdCode = async () => {
       setIMProfile({ chatToken, imToken, userID });
       localStorage.removeItem("APPLE_ID_TOKEN");
     } else if (currentThird === "FACEBOOK") {
-      // type = "FACEBOOK";
-      // registerType = 5;
-      // localStorage.setItem("FACEBOOK_ID_TOKEN", idToken);
-      // const data = await PostThirdCode(idToken, registerType, clientId);
-      // const { chatToken, imToken, userID } = data;
-      // setIMProfile({ chatToken, imToken, userID });
-      // localStorage.removeItem("FACEBOOK_ID_TOKEN");
+      let idToken = hash.split("id_token=")[1]?.split("&")[0];
+      type = "FACEBOOK";
+      registerType = 5;
+      localStorage.setItem("FACEBOOK_ID_TOKEN", idToken);
+      const data = await PostThirdCode(idToken, registerType, clientId);
+      const { chatToken, imToken, userID } = data;
+      setIMProfile({ chatToken, imToken, userID });
+      localStorage.removeItem("FACEBOOK_ID_TOKEN");
     }
     localStorage.removeItem("thirdLogin");
     localStorage.removeItem("clientId");

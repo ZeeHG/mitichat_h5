@@ -218,7 +218,6 @@ const appleConfig = ref({
   response_type: "code id_token",
   scope: " ",
   response_mode: "fragment",
-  state: "YOUR_STATE_VALUE", // 状态值，用于防止CSRF攻击
   nonce: generateNonce(),
 });
 function generateNonce() {
