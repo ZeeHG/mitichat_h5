@@ -99,3 +99,29 @@ export const PostThirdCode = async (
   const data = await response.data;
   return data;
 };
+
+export const PostFacebookThirdCode = async (
+  accessToken: string,
+  registerType: number,
+  userID: string
+) => {
+  const response = await request.post(
+    "http://10.25.12.145:10008/account/oauth",
+
+    JSON.stringify({
+      accessToken: accessToken,
+      userID: userID,
+      registerType: registerType,
+      platform: 5,
+      deviceID: "",
+    }),
+
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const data = await response.data;
+  return data;
+};

@@ -122,6 +122,11 @@
         <van-button block @click="thirdLogin('FACEBOOK')">
           {{ $t("buttons.facebookLogin") }}
         </van-button>
+        <fb:login-button
+          scope="public_profile,email"
+          onlogin="facebookLogin();"
+        >
+        </fb:login-button>
       </div>
     </van-form>
 
@@ -178,6 +183,7 @@
 </template>
 
 <script setup lang="ts" async>
+import { onMounted } from "vue";
 import md5 from "md5";
 import { showToast } from "vant";
 import type { PickerConfirmEventParams } from "vant";
@@ -187,6 +193,9 @@ import { feedbackToast } from "@/utils/common";
 import { setIMProfile } from "@/utils/storage";
 import { UsedFor } from "@/api/data";
 import Config from "./Config.vue";
+import { PostFacebookThirdCode } from "@api/login";
+import { getApiUrl, getIMToken, getIMUserID, getWsUrl } from "@/utils/storage";
+import { Console } from "console";
 const version = process.env.VERSION;
 
 const { t, locale } = useI18n();
@@ -220,24 +229,61 @@ const appleConfig = ref({
   nonce: generateNonce(),
 });
 const facebookConfig = ref({
-  appId: "1152955699389545",
-  //修改
+  appId: "422970893820284",
+  cookie: true,
   xfbml: true,
   version: "v19.0",
-  scope: "email,user_likes",
-  return_scopes: true,
+});
+onMounted(() => {
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: "422970893820284",
+      cookie: true,
+      xfbml: true,
+      version: "v19.0",
+    });
+  };
 });
 
-// window.fbAsyncInit = function () {
-//   FB.init({
-//     appId: "1152955699389545",
-//     //修改
-//     xfbml: true,
-//     version: "v19.0",
-//     scope: "email,user_likes",
-//     return_scopes: true,
-//   });
-// };
+window.facebookLogin = function () {
+  FB.getLoginStatus(function (response) {
+    if (response.status === "connected") {
+      console.log("Connected to Facebook");
+    } else {
+      console.log("Not connected to Facebook");
+    }
+  });
+  // if (typeof FB !== "undefined") {
+  //   fbAsyncInit();
+  // }
+  localStorage.setItem("userID", facebookConfig.value.appId);
+  FB.getLoginStatus(async function (response) {
+    console.log(response);
+    if (response.status === "connected") {
+      console.log(response.authResponse.accessToken);
+      // localStorage.setItem(
+      //   "FACEBOOK_ID_TOKEN",
+      //   response.authResponse.accessToken
+      // );
+      const fbIdToken = response.authResponse.accessToken;
+      const data = await PostFacebookThirdCode(
+        fbIdToken,
+        5,
+        facebookConfig.value.appId
+      );
+      const { chatToken, imToken, userID } = data;
+      setIMProfile({ chatToken, imToken, userID });
+      // FB.api("/me", function (response) {
+      //   console.log(response);
+      // });
+      // const IMToken = getIMToken();
+      // const IMUserID = getIMUserID();
+      router.push("/conversation");
+    } else {
+      console.log("失败");
+    }
+  });
+};
 function generateNonce() {
   return (
     Math.random().toString(36).substring(2, 15) +
@@ -270,17 +316,34 @@ const thirdLogin = async (type: string) => {
       }&response_mode=${appleConfig.value.response_mode}`;
       break;
     case "FACEBOOK":
-      localStorage.setItem("clientId", facebookConfig.value.appId);
-      FB.login(function (response) {
-        // if (response.status === "connected") {
-        //   localStorage.setItem("FACEBOOK_ID_TOKEN", response.accessToken);
-        //   FB.api("/me?fields=id,name,email", function (fb_user) {
-        //     console.log(fb_user);
-        //   });
-        // } else {
-        //   console.log("失败");
-        // }
+      localStorage.setItem("userID", facebookConfig.value.appId);
+      FB.getLoginStatus(async function (response) {
+        console.log(response);
+        if (response.status === "connected") {
+          console.log(response.authResponse.accessToken);
+          // localStorage.setItem(
+          //   "FACEBOOK_ID_TOKEN",
+          //   response.authResponse.accessToken
+          // );
+          const fbIdToken = response.authResponse.accessToken;
+          const data = await PostFacebookThirdCode(
+            fbIdToken,
+            5,
+            facebookConfig.value.appId
+          );
+          const { chatToken, imToken, userID } = data;
+          setIMProfile({ chatToken, imToken, userID });
+          // FB.api("/me", function (response) {
+          //   console.log(response);
+          // });
+          // const IMToken = getIMToken();
+          // const IMUserID = getIMUserID();
+          router.push("/conversation");
+        } else {
+          console.log("失败");
+        }
       });
+
       break;
   }
   if (url) {
