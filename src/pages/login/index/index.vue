@@ -122,11 +122,11 @@
         <van-button block @click="thirdLogin('FACEBOOK')">
           {{ $t("buttons.facebookLogin") }}
         </van-button>
-        <fb:login-button
+        <!-- <fb:login-button
           scope="public_profile,email"
           onlogin="facebookLogin();"
         >
-        </fb:login-button>
+        </fb:login-button> -->
       </div>
     </van-form>
 
@@ -261,10 +261,6 @@ window.facebookLogin = function () {
     console.log(response);
     if (response.status === "connected") {
       console.log(response.authResponse.accessToken);
-      // localStorage.setItem(
-      //   "FACEBOOK_ID_TOKEN",
-      //   response.authResponse.accessToken
-      // );
       const fbIdToken = response.authResponse.accessToken;
       const data = await PostFacebookThirdCode(
         fbIdToken,
@@ -273,11 +269,6 @@ window.facebookLogin = function () {
       );
       const { chatToken, imToken, userID } = data;
       setIMProfile({ chatToken, imToken, userID });
-      // FB.api("/me", function (response) {
-      //   console.log(response);
-      // });
-      // const IMToken = getIMToken();
-      // const IMUserID = getIMUserID();
       router.push("/conversation");
     } else {
       console.log("失败");
@@ -321,10 +312,6 @@ const thirdLogin = async (type: string) => {
         console.log(response);
         if (response.status === "connected") {
           console.log(response.authResponse.accessToken);
-          // localStorage.setItem(
-          //   "FACEBOOK_ID_TOKEN",
-          //   response.authResponse.accessToken
-          // );
           const fbIdToken = response.authResponse.accessToken;
           const data = await PostFacebookThirdCode(
             fbIdToken,
@@ -333,11 +320,6 @@ const thirdLogin = async (type: string) => {
           );
           const { chatToken, imToken, userID } = data;
           setIMProfile({ chatToken, imToken, userID });
-          // FB.api("/me", function (response) {
-          //   console.log(response);
-          // });
-          // const IMToken = getIMToken();
-          // const IMUserID = getIMUserID();
           router.push("/conversation");
         } else {
           console.log("失败");

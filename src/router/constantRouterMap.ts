@@ -11,6 +11,7 @@ import contactRouters from "./modules/contact";
 import profileRouters from "./modules/profile";
 import loginRouters from "./modules/login";
 import momentsRouters from "./modules/moments";
+import inviteRouters from "./modules/invite";
 import { getIMToken, getIMUserID } from "@/utils/storage";
 
 const loginCheck = async (
@@ -83,6 +84,7 @@ const routes: Array<RouteRecordRaw> = [
         ],
       },
       ...loginRouters,
+      ...inviteRouters,
     ],
   },
 ];
